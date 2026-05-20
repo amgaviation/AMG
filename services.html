@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — AMG Aviation Group</title>
+  <meta name="description" content="Aircraft ferry, relocation, maintenance flights, delivery flights, crew staffing, contract pilots, and subscription plans." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #050B14; --bg-secondary: #07111F; --bg-accent: #0E223D;
+      --blue-steel: #1D4E89; --blue-light: #3B82F6;
+      --text-white: #FFFFFF; --text-soft: #E5E7EB; --text-muted: #9CA3AF;
+      --border-dark: #1F2937; --glass-border: rgba(255,255,255,0.14);
+      --glass-hover: rgba(255,255,255,0.06); --nav-height: 72px;
+      --font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-primary); color: var(--text-soft); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(5,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: var(--glass-border); }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+    .nav-cta { font-size: 0.78rem !important; font-weight: 600 !important; color: var(--text-white) !important; background: var(--blue-steel); padding: 0.5rem 1.2rem; border-radius: 6px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(5,11,20,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 1.5rem 5vw 2rem; z-index: 999; transform: translateY(-8px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none; }
+    .mobile-menu.open { display: block; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; font-size: 1rem; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dark); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--text-white); }
+
+    .page-hero { padding: calc(var(--nav-height) + 5rem) 5vw 4rem; text-align: center; background: linear-gradient(180deg, #050B14 0%, #07111F 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29,78,137,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+
+    section { padding: 5rem 5vw; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.6rem; }
+    .section-sub { font-size: 0.95rem; color: var(--text-muted); max-width: 540px; line-height: 1.75; }
+
+    .services-section { background: var(--bg-primary); }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services-header { margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-accent);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .service-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+
+    .service-icon { font-size: 1.6rem; margin-bottom: 1.2rem; }
+
+    .service-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-title { font-size: 1.15rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.7rem; }
+    .service-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+
+    .divider { width: 100%; height: 1px; background: var(--border-dark); margin: 0; }
+
+    .subscriptions { background: var(--bg-secondary); }
+    .subscriptions-inner { max-width: 1100px; margin: 0 auto; }
+    .subscriptions-header { text-align: center; margin-bottom: 3rem; }
+
+    .sub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+    .sub-card {
+      background: var(--bg-accent);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 2.2rem 2rem;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .sub-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+    .sub-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .sub-card-title { font-size: 1.1rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.5rem; }
+    .sub-card-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; }
+
+    .dependability { background: var(--bg-primary); text-align: center; }
+    .dependability-inner { max-width: 680px; margin: 0 auto; }
+    .dependability h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .dependability p { color: var(--text-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--text-white); background: var(--blue-steel); padding: 0.9rem 2.2rem; border-radius: 8px; text-decoration: none; transition: background 0.25s, transform 0.2s; }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border-dark); padding: 4rem 5vw 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-dark); }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-white); margin-bottom: 0.8rem; }
+    .footer-brand-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 240px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .footer-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text-white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AMG Aviation</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/our-team">Our Team</a></li>
+      <li><a href="/services" class="active">Services</a></li>
+      <li><a href="/aircraft">Aircraft</a></li>
+      <li><a href="/pilot-network">Pilot Network</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/booking-request" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+    <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+    <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+    <a href="/booking-request">Booking Request</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="page-label">What We Do</span>
+    <h1>Operational Services</h1>
+    <p>Comprehensive aviation support from single-leg ferry operations to ongoing crew staffing arrangements.</p>
+  </div>
+
+  <!-- FLIGHT OPERATIONS -->
+  <section class="services-section">
+    <div class="services-inner">
+      <div class="services-header reveal">
+        <p class="section-label">Flight Operations</p>
+        <h2 class="section-title">Aircraft Movement &amp; Delivery</h2>
+        <p class="section-sub">Professional flight operations for aircraft transitions, maintenance needs, and delivery requirements.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🛫</div>
+          <span class="service-tag">Ferry</span>
+          <div class="service-title">Aircraft Ferry</div>
+          <div class="service-desc">Professional ferry services for piston, turboprop, and jet aircraft. Domestic and international routing with full compliance. Qualified pilots matched to aircraft type and mission requirements.</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🗺️</div>
+          <span class="service-tag">Relocation</span>
+          <div class="service-title">Aircraft Relocation</div>
+          <div class="service-desc">Aircraft repositioning for maintenance, storage, owner preference, or base change. Coordinated logistics including handling, fuel planning, and documentation support.</div>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🔧</div>
+          <span class="service-tag">Maintenance</span>
+          <div class="service-title">Maintenance Flights</div>
+          <div class="service-desc">Post-maintenance and return-to-service flight operations. Functional check flights, squawk verification, and acceptance flights performed by qualified crew with type familiarity.</div>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">📦</div>
+          <span class="service-tag">Delivery</span>
+          <div class="service-title">Delivery Flights</div>
+          <div class="service-desc">New aircraft delivery and acquisition flight support. Pickup coordination, pre-delivery inspection support, and ferry to owner base or completion center.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CREW SERVICES -->
+  <section class="services-section" style="background: var(--bg-secondary);">
+    <div class="services-inner">
+      <div class="services-header reveal">
+        <p class="section-label">Crew Services</p>
+        <h2 class="section-title">Staffing &amp; Pilot Placement</h2>
+        <p class="section-sub">Qualified aviation professionals for short-term, long-term, and recurring staffing needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">👥</div>
+          <span class="service-tag">Staffing</span>
+          <div class="service-title">Crew Staffing</div>
+          <div class="service-desc">Flight crew placement for owner-operators, flight departments, and management companies. Temporary, contract, and supplemental staffing arrangements. Background and credential verified professionals.</div>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🪪</div>
+          <span class="service-tag">Contract</span>
+          <div class="service-title">Contract Pilot Services</div>
+          <div class="service-desc">1099 contract pilot placement for scheduled operations, seasonal demand peaks, or crew shortfalls. ATP-qualified, type-rated pilots available for turbine and piston platforms across the network.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SUBSCRIPTION PLANS -->
+  <section class="subscriptions">
+    <div class="subscriptions-inner">
+      <div class="subscriptions-header reveal">
+        <p class="section-label">Subscription Plans</p>
+        <h2 class="section-title">Ongoing Support Arrangements</h2>
+        <p class="section-sub" style="margin: 0 auto;">Retainer and subscription-based plans for operators who need recurring, dependable support.</p>
+      </div>
+      <div class="sub-grid">
+        <div class="sub-card reveal reveal-delay-1">
+          <div class="sub-card-icon">🔩</div>
+          <div class="sub-card-title">Maintenance Subscription</div>
+          <div class="sub-card-desc">Scheduled maintenance coordination and flight support on a recurring basis. Priority scheduling, standardized crew, and consistent oversight for your maintenance program.</div>
+        </div>
+        <div class="sub-card reveal reveal-delay-2">
+          <div class="sub-card-icon">🧑‍✈️</div>
+          <div class="sub-card-title">Contract Pilot Subscription</div>
+          <div class="sub-card-desc">Dedicated contract pilot availability on a retainer basis. Reserved crew time for your operation, with priority access and reduced coordination lead times.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPENDABILITY -->
+  <section class="dependability">
+    <div class="dependability-inner reveal">
+      <p class="section-label" style="justify-content: center; display: flex;">Dependability</p>
+      <h2>Professional support you can count on.</h2>
+      <p>Every mission is handled with the same level of care — whether it's a single-leg ferry or a long-term staffing arrangement. Our team brings the qualifications and operational discipline your aircraft and operation deserve.</p>
+      <a href="/booking-request" class="btn-primary">Request Support</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">AMG Aviation Group</div>
+          <p class="footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="/services">Aircraft Ferry</a><a href="/services">Aircraft Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:+19544081730">(954) 408-1730</a>
+          <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+          <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+        <span>South Florida · Nationwide Operations</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pilot Network — AMG Aviation Group</title>
+  <meta name="description" content="Join the AMG Aviation Group nationwide pilot network. 1099 contract ferry and flight operations support. Submit your application." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #050B14; --bg-secondary: #07111F; --bg-accent: #0E223D;
+      --blue-steel: #1D4E89; --blue-light: #3B82F6;
+      --text-white: #FFFFFF; --text-soft: #E5E7EB; --text-muted: #9CA3AF;
+      --border-dark: #1F2937; --glass-border: rgba(255,255,255,0.14);
+      --glass-hover: rgba(255,255,255,0.06); --nav-height: 72px;
+      --font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-primary); color: var(--text-soft); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(5,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: var(--glass-border); }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+    .nav-cta { font-size: 0.78rem !important; font-weight: 600 !important; color: var(--text-white) !important; background: var(--blue-steel); padding: 0.5rem 1.2rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(5,11,20,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 1.5rem 5vw 2rem; z-index: 999; transform: translateY(-8px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none; }
+    .mobile-menu.open { display: block; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; font-size: 1rem; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dark); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--text-white); }
+
+    .page-hero { padding: calc(var(--nav-height) + 5rem) 5vw 4rem; text-align: center; background: linear-gradient(180deg, #050B14 0%, #07111F 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29,78,137,0.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+    .contract-notice { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem; font-size: 0.82rem; font-weight: 600; color: var(--text-soft); background: rgba(255,255,255,0.07); border: 1px solid var(--glass-border); padding: 0.5rem 1.1rem; border-radius: 6px; }
+
+    section { padding: 5rem 5vw; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; margin-bottom: 2rem; }
+
+    /* Form styles */
+    .form-section { background: var(--bg-secondary); }
+    .pilot-form { display: flex; flex-direction: column; gap: 0; }
+
+    .form-block {
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-block-header {
+      background: var(--bg-accent);
+      padding: 1.2rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .form-block-icon { font-size: 1.1rem; }
+    .form-block-title { font-size: 0.88rem; font-weight: 700; color: var(--text-white); letter-spacing: 0.01em; }
+
+    .form-block-body { background: var(--bg-primary); padding: 1.8rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+    input[type="date"], select, textarea {
+      font-family: var(--font);
+      font-size: 0.92rem;
+      color: var(--text-white);
+      background: var(--bg-accent);
+      border: 1px solid var(--border-dark);
+      border-radius: 7px;
+      padding: 0.72rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+    input:focus, select:focus, textarea:focus { border-color: var(--blue-light); }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem; cursor: pointer;
+    }
+    select option { background: var(--bg-accent); }
+    textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* Checkbox groups */
+    .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+    .checkbox-item { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] {
+      width: 16px; height: 16px; appearance: none; -webkit-appearance: none;
+      border: 1px solid var(--border-dark); border-radius: 3px;
+      background: var(--bg-accent); cursor: pointer;
+      transition: background 0.15s, border-color 0.15s; flex-shrink: 0;
+      padding: 0;
+    }
+    .checkbox-item input[type="checkbox"]:checked { background: var(--blue-steel); border-color: var(--blue-steel); }
+    .checkbox-item input[type="checkbox"]:checked::after { content: '✓'; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 700; width: 100%; height: 100%; }
+    .checkbox-label { font-size: 0.83rem; color: var(--text-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+    /* Radio groups */
+    .radio-group { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .radio-item { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .radio-item input[type="radio"] {
+      width: 16px; height: 16px; appearance: none; -webkit-appearance: none;
+      border: 1px solid var(--border-dark); border-radius: 50%;
+      background: var(--bg-accent); cursor: pointer;
+      transition: background 0.15s, border-color 0.15s; flex-shrink: 0; padding: 0;
+    }
+    .radio-item input[type="radio"]:checked { background: var(--blue-steel); border-color: var(--blue-steel); box-shadow: inset 0 0 0 3px var(--bg-accent); }
+    .radio-label { font-size: 0.88rem; color: var(--text-soft); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+    input[type="file"] {
+      font-size: 0.85rem; color: var(--text-muted); cursor: pointer;
+      padding: 0.6rem 0.9rem;
+    }
+    input[type="file"]::file-selector-button {
+      font-family: var(--font); font-size: 0.78rem; font-weight: 600; color: var(--text-white);
+      background: var(--blue-steel); border: none; padding: 0.4rem 0.9rem; border-radius: 5px; cursor: pointer; margin-right: 0.8rem; transition: background 0.2s;
+    }
+    input[type="file"]::file-selector-button:hover { background: var(--blue-light); }
+
+    .btn-submit { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--font); font-size: 0.95rem; font-weight: 600; color: var(--text-white); background: var(--blue-steel); border: none; padding: 1rem 2.5rem; border-radius: 8px; cursor: pointer; transition: background 0.25s, transform 0.2s; margin-top: 0.5rem; }
+    .btn-submit:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border-dark); padding: 4rem 5vw 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-dark); }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-white); margin-bottom: 0.8rem; }
+    .footer-brand-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 240px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .footer-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text-white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .form-row, .form-row-3 { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } .btn-submit { width: 100%; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AMG Aviation</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li><li><a href="/about">About</a></li>
+      <li><a href="/our-team">Our Team</a></li><li><a href="/services">Services</a></li>
+      <li><a href="/aircraft">Aircraft</a></li>
+      <li><a href="/pilot-network" class="active">Pilot Network</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/booking-request" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+    <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+    <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+    <a href="/booking-request">Booking Request</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="hero-eyebrow">Join Our Nationwide Pilot Network</span>
+    <h1>Pilot Network<br>Application</h1>
+    <p>Contract ferry pilots, crew staffing professionals, and aviation specialists. Submit your qualifications to join the AMG Aviation Group network.</p>
+    <div><span class="contract-notice">⚠ 1099 Contract Work ONLY</span></div>
+  </div>
+
+  <!-- APPLICATION FORM -->
+  <section class="form-section">
+    <div class="section-inner">
+      <div class="reveal" style="margin-bottom: 2.5rem;">
+        <p class="section-label">Network Application</p>
+        <h2 class="section-title">Submit Your Qualifications</h2>
+      </div>
+
+      <form class="pilot-form reveal" id="pilotForm" novalidate>
+
+        <!-- GENERAL INFORMATION -->
+        <div class="form-block">
+          <div class="form-block-header">
+            <span class="form-block-icon">👤</span>
+            <span class="form-block-title">General Information</span>
+          </div>
+          <div class="form-block-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="legalName">Legal Name</label>
+                <input type="text" id="legalName" name="legalName" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="businessName">Business Name</label>
+                <input type="text" id="businessName" name="businessName" autocomplete="organization" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" autocomplete="street-address" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="languages">Languages</label>
+                <input type="text" id="languages" name="languages" placeholder="e.g. English, Spanish" />
+              </div>
+              <div class="form-group">
+                <label for="nearestAirport">Nearest Airport (ICAO/IATA)</label>
+                <input type="text" id="nearestAirport" name="nearestAirport" placeholder="e.g. KFLL" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Valid Passport?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="passport" value="yes" /><span class="radio-label">Yes</span></label>
+                  <label class="radio-item"><input type="radio" name="passport" value="no" /><span class="radio-label">No</span></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="minNotice">Minimum Notice Required</label>
+                <select id="minNotice" name="minNotice">
+                  <option value="">Select</option>
+                  <option>Same day</option>
+                  <option>24 hours</option>
+                  <option>48 hours</option>
+                  <option>72 hours</option>
+                  <option>1 week</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="rateSE">Day Rate — Single Engine</label>
+                <input type="text" id="rateSE" name="rateSE" placeholder="e.g. $400/day" />
+              </div>
+              <div class="form-group">
+                <label for="rateMEL">Day Rate — Multi-Engine</label>
+                <input type="text" id="rateMEL" name="rateMEL" placeholder="e.g. $600/day" />
+              </div>
+              <div class="form-group">
+                <label for="rateTurbine">Day Rate — Turbine</label>
+                <input type="text" id="rateTurbine" name="rateTurbine" placeholder="e.g. $900/day" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="availStart">Availability Start Date</label>
+              <input type="date" id="availStart" name="availStart" />
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATES & RATINGS -->
+        <div class="form-block">
+          <div class="form-block-header">
+            <span class="form-block-icon">📋</span>
+            <span class="form-block-title">Certificates &amp; Ratings</span>
+          </div>
+          <div class="form-block-body">
+            <div class="form-group">
+              <label for="resume">Resume / CV</label>
+              <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+            </div>
+            <div class="form-group">
+              <label>FAA Medical Class</label>
+              <select id="medicalClass" name="medicalClass">
+                <option value="">Select</option>
+                <option>First Class</option>
+                <option>Second Class</option>
+                <option>Third Class</option>
+                <option>BasicMed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Certificate Type (select all that apply)</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="cert" value="ATP" /><span class="checkbox-label">ATP</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="cert" value="Commercial" /><span class="checkbox-label">Commercial</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="cert" value="ATP-H" /><span class="checkbox-label">ATP-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="cert" value="CPL-H" /><span class="checkbox-label">CPL-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="cert" value="Other" /><span class="checkbox-label">Other</span></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Ratings (select all that apply)</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="ASEL" /><span class="checkbox-label">ASEL</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="AMEL" /><span class="checkbox-label">AMEL</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="IFR" /><span class="checkbox-label">IFR</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="CFI" /><span class="checkbox-label">CFI</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="CFII" /><span class="checkbox-label">CFII</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="MEI" /><span class="checkbox-label">MEI</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="ASES" /><span class="checkbox-label">ASES</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="AMES" /><span class="checkbox-label">AMES</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="Tailwheel" /><span class="checkbox-label">Tailwheel</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="High Performance" /><span class="checkbox-label">High Performance</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="IFR-H" /><span class="checkbox-label">IFR-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="CFI-H" /><span class="checkbox-label">CFI-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="CFII-H" /><span class="checkbox-label">CFII-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="Sling Load-H" /><span class="checkbox-label">Sling Load-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="NVG-H" /><span class="checkbox-label">NVG-H</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="rating" value="Other" /><span class="checkbox-label">Other</span></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="typeRatings">Type Ratings</label>
+              <input type="text" id="typeRatings" name="typeRatings" placeholder="e.g. CE-525, BE-400, B737" />
+            </div>
+          </div>
+        </div>
+
+        <!-- FLIGHT TIME -->
+        <div class="form-block">
+          <div class="form-block-header">
+            <span class="form-block-icon">✈️</span>
+            <span class="form-block-title">Flight Time</span>
+          </div>
+          <div class="form-block-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="totalTime">Total Time (hours)</label>
+                <input type="number" id="totalTime" name="totalTime" min="0" placeholder="e.g. 2500" />
+              </div>
+              <div class="form-group">
+                <label for="picTime">PIC Time (hours)</label>
+                <input type="number" id="picTime" name="picTime" min="0" placeholder="e.g. 1800" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="multiTime">Multi-Engine Time (hours)</label>
+              <input type="number" id="multiTime" name="multiTime" min="0" placeholder="e.g. 800" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>International Experience?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="intl" value="yes" /><span class="radio-label">Yes</span></label>
+                  <label class="radio-item"><input type="radio" name="intl" value="no" /><span class="radio-label">No</span></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Oceanic Experience?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="oceanic" value="yes" /><span class="radio-label">Yes</span></label>
+                  <label class="radio-item"><input type="radio" name="oceanic" value="no" /><span class="radio-label">No</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="additionalComments">Additional Comments</label>
+              <textarea id="additionalComments" name="additionalComments" rows="4" placeholder="Any additional information about your experience, availability, or preferences"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Application</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">AMG Aviation Group</div>
+          <p class="footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="/services">Aircraft Ferry</a><a href="/services">Aircraft Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:+19544081730">(954) 408-1730</a>
+          <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+          <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+        <span>South Florida · Nationwide Operations</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.getElementById('pilotForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      btn.textContent = 'Application Submitted ✓';
+      btn.style.background = '#166534';
+      btn.disabled = true;
+    });
+  </script>
+</body>
+</html>

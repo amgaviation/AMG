@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Request — AMG Aviation Group</title>
+  <meta name="description" content="Submit a booking request for aircraft ferry, relocation, crew staffing, or maintenance flight services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #050B14; --bg-secondary: #07111F; --bg-accent: #0E223D;
+      --blue-steel: #1D4E89; --blue-light: #3B82F6;
+      --text-white: #FFFFFF; --text-soft: #E5E7EB; --text-muted: #9CA3AF;
+      --border-dark: #1F2937; --glass-border: rgba(255,255,255,0.14);
+      --glass-hover: rgba(255,255,255,0.06); --nav-height: 72px;
+      --font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-primary); color: var(--text-soft); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(5,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: var(--glass-border); }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+    .nav-cta { font-size: 0.78rem !important; font-weight: 600 !important; color: var(--text-white) !important; background: var(--blue-steel); padding: 0.5rem 1.2rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(5,11,20,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 1.5rem 5vw 2rem; z-index: 999; transform: translateY(-8px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none; }
+    .mobile-menu.open { display: block; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; font-size: 1rem; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dark); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--text-white); }
+
+    .page-hero { padding: calc(var(--nav-height) + 5rem) 5vw 4rem; text-align: center; background: linear-gradient(180deg, #050B14 0%, #07111F 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29,78,137,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+
+    section { padding: 5rem 5vw; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; }
+
+    .overview { background: var(--bg-secondary); }
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.8rem; }
+    .overview-card { background: var(--bg-accent); border: 1px solid var(--glass-border); border-radius: 12px; padding: 1.8rem 1.6rem; transition: border-color 0.25s, transform 0.25s; }
+    .overview-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+    .overview-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .overview-title { font-size: 0.95rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.4rem; }
+    .overview-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
+
+    .process { background: var(--bg-primary); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; position: relative; margin-top: 2.8rem; }
+    .step { padding: 2rem 1.5rem; border: 1px solid var(--border-dark); border-radius: 0; background: var(--bg-secondary); }
+    .step:first-child { border-radius: 12px 0 0 12px; }
+    .step:last-child { border-radius: 0 12px 12px 0; }
+    .step-number { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 0.6rem; }
+    .step-title { font-size: 1rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+    .form-section { background: var(--bg-secondary); }
+    .form-wrap { max-width: 720px; margin: 0 auto; }
+    .form-header { margin-bottom: 2.5rem; }
+
+    .booking-form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    input, select, textarea {
+      font-family: var(--font);
+      font-size: 0.95rem;
+      color: var(--text-white);
+      background: var(--bg-accent);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 0.7; }
+
+    input:focus, select:focus, textarea:focus { border-color: var(--blue-light); }
+
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+
+    select option { background: var(--bg-accent); color: var(--text-white); }
+
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    .field-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    .date-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-white);
+      background: var(--blue-steel);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border-dark); padding: 4rem 5vw 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-dark); }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-white); margin-bottom: 0.8rem; }
+    .footer-brand-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 240px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .footer-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text-white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .form-row { grid-template-columns: 1fr; } .step:first-child { border-radius: 12px 12px 0 0; } .step:last-child { border-radius: 0 0 12px 12px; } .process-steps { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .date-group { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } .btn-submit { width: 100%; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AMG Aviation</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li><li><a href="/about">About</a></li>
+      <li><a href="/our-team">Our Team</a></li><li><a href="/services">Services</a></li>
+      <li><a href="/aircraft">Aircraft</a></li><li><a href="/pilot-network">Pilot Network</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/booking-request" class="nav-cta active">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+    <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+    <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+    <a href="/booking-request">Booking Request</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="page-label">Get Started</span>
+    <h1>Booking Request</h1>
+    <p>Submit your mission details and our team will respond with crew availability and coordination confirmation within 24 hours.</p>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="overview">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">Our Process</p>
+        <h2 class="section-title">What Happens After You Submit</h2>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card reveal reveal-delay-1">
+          <div class="overview-icon">📋</div>
+          <div class="overview-title">Mission-Based Review</div>
+          <div class="overview-desc">Every request is reviewed against mission requirements — aircraft type, routing, timing, and crew needs — before confirmation.</div>
+        </div>
+        <div class="overview-card reveal reveal-delay-2">
+          <div class="overview-icon">📡</div>
+          <div class="overview-title">Professional Coordination</div>
+          <div class="overview-desc">Our team coordinates crew assignment, availability confirmation, and logistical details before providing a formal response.</div>
+        </div>
+        <div class="overview-card reveal reveal-delay-3">
+          <div class="overview-icon">✅</div>
+          <div class="overview-title">Safety-First Execution</div>
+          <div class="overview-desc">All operations are executed with qualified, credentialed crew and full regulatory compliance. No shortcuts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STEPS -->
+  <section class="process">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Four Steps to a Confirmed Mission</h2>
+      </div>
+      <div class="process-steps reveal">
+        <div class="step">
+          <div class="step-number">Step 01</div>
+          <div class="step-title">Submit Details</div>
+          <div class="step-desc">Fill out the booking form with your aircraft, desired date, service type, and mission description.</div>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 02</div>
+          <div class="step-title">Review Requirements</div>
+          <div class="step-desc">Our team reviews your mission details and matches qualified crew to the aircraft type and routing.</div>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 03</div>
+          <div class="step-title">Confirm Availability</div>
+          <div class="step-desc">We confirm crew availability and contact you to finalize scheduling and any coordination specifics.</div>
+        </div>
+        <div class="step">
+          <div class="step-number">Step 04</div>
+          <div class="step-title">Coordinate Mission</div>
+          <div class="step-desc">Full operational coordination — logistics, documentation, and crew briefing — handled by AMG Aviation Group.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="form-section">
+    <div class="section-inner">
+      <div class="form-wrap">
+        <div class="form-header reveal">
+          <p class="section-label">Booking Form</p>
+          <h2 class="section-title">Submit Your Request</h2>
+        </div>
+        <form class="booking-form reveal" id="bookingForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" autocomplete="given-name" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" autocomplete="family-name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" name="company" autocomplete="organization" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Requested Service Date</label>
+            <div class="date-group">
+              <select id="dateMonth" name="dateMonth" aria-label="Month">
+                <option value="">Month</option>
+                <option>January</option><option>February</option><option>March</option>
+                <option>April</option><option>May</option><option>June</option>
+                <option>July</option><option>August</option><option>September</option>
+                <option>October</option><option>November</option><option>December</option>
+              </select>
+              <select id="dateDay" name="dateDay" aria-label="Day">
+                <option value="">Day</option>
+                <script>for(let i=1;i<=31;i++) document.write(`<option>${i}</option>`);</script>
+              </select>
+              <select id="dateYear" name="dateYear" aria-label="Year">
+                <option value="">Year</option>
+                <script>const y=new Date().getFullYear(); for(let i=y;i<=y+3;i++) document.write(`<option>${i}</option>`);</script>
+              </select>
+            </div>
+            <div class="field-hint">If unsure, please choose any date.</div>
+          </div>
+          <div class="form-group">
+            <label for="service">Services Desired</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Aircraft Ferry</option>
+              <option>Aircraft Relocation</option>
+              <option>Maintenance Flights</option>
+              <option>Delivery Flights</option>
+              <option>Crew Staffing</option>
+              <option>Contract Pilot Services</option>
+              <option>Maintenance Subscription</option>
+              <option>Contract Pilot Subscription</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="missionDetails">Mission Details</label>
+            <textarea id="missionDetails" name="missionDetails" rows="4" placeholder="Please describe in a few words how we can meet your needs"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="additionalDetails">Additional Details / Questions</label>
+            <textarea id="additionalDetails" name="additionalDetails" rows="3" placeholder="Any additional information or questions"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Submit Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">AMG Aviation Group</div>
+          <p class="footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="/services">Aircraft Ferry</a><a href="/services">Aircraft Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:+19544081730">(954) 408-1730</a>
+          <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+          <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+        <span>South Florida · Nationwide Operations</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      btn.textContent = 'Request Submitted ✓';
+      btn.style.background = '#166534';
+      btn.disabled = true;
+    });
+  </script>
+</body>
+</html>

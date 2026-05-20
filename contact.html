@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — AMG Aviation Group</title>
+  <meta name="description" content="Contact AMG Aviation Group. (954) 408-1730 · information@amgaviationgroup.com · South Florida service area." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #050B14; --bg-secondary: #07111F; --bg-accent: #0E223D;
+      --blue-steel: #1D4E89; --blue-light: #3B82F6;
+      --text-white: #FFFFFF; --text-soft: #E5E7EB; --text-muted: #9CA3AF;
+      --border-dark: #1F2937; --glass-border: rgba(255,255,255,0.14);
+      --glass-hover: rgba(255,255,255,0.06); --nav-height: 72px;
+      --font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-primary); color: var(--text-soft); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(5,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: var(--glass-border); }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+    .nav-cta { font-size: 0.78rem !important; font-weight: 600 !important; color: var(--text-white) !important; background: var(--blue-steel); padding: 0.5rem 1.2rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(5,11,20,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 1.5rem 5vw 2rem; z-index: 999; transform: translateY(-8px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none; }
+    .mobile-menu.open { display: block; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; font-size: 1rem; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dark); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--text-white); }
+
+    .page-hero { padding: calc(var(--nav-height) + 5rem) 5vw 4rem; text-align: center; background: linear-gradient(180deg, #050B14 0%, #07111F 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29,78,137,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+    section { padding: 5rem 5vw; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+    .contact-card {
+      background: var(--bg-accent);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 2rem 1.8rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .contact-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+    .contact-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .contact-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .contact-value { font-size: 1.05rem; font-weight: 600; color: var(--text-white); }
+    .contact-value a { color: var(--text-white); text-decoration: none; transition: color 0.2s; }
+    .contact-value a:hover { color: var(--blue-light); }
+    .contact-sub { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+    .response-section { background: var(--bg-secondary); }
+
+    .response-inner { max-width: 1000px; margin: 0 auto; }
+    .response-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+    .response-card { background: var(--bg-primary); border: 1px solid var(--border-dark); border-radius: 10px; padding: 1.5rem; transition: border-color 0.25s; }
+    .response-card:hover { border-color: var(--glass-border); }
+    .response-heading { font-size: 0.88rem; font-weight: 600; color: var(--text-white); margin-bottom: 0.4rem; }
+    .response-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+    .cta-section { background: var(--bg-primary); text-align: center; }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-inner h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .cta-inner p { color: var(--text-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--text-white); background: var(--blue-steel); padding: 0.9rem 2.2rem; border-radius: 8px; text-decoration: none; transition: background 0.25s, transform 0.2s; }
+    .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border-dark); padding: 4rem 5vw 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-dark); }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-white); margin-bottom: 0.8rem; }
+    .footer-brand-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 240px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .footer-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text-white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; } .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .contact-grid { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AMG Aviation</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li><li><a href="/about">About</a></li>
+      <li><a href="/our-team">Our Team</a></li><li><a href="/services">Services</a></li>
+      <li><a href="/aircraft">Aircraft</a></li><li><a href="/pilot-network">Pilot Network</a></li>
+      <li><a href="/contact" class="active">Contact</a></li>
+      <li><a href="/booking-request" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+    <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+    <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+    <a href="/booking-request">Booking Request</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="page-label">Get In Touch</span>
+    <h1>Contact</h1>
+    <p>Reach the AMG Aviation Group team for bookings, general inquiries, or operational partnership discussions.</p>
+  </div>
+
+  <!-- CONTACT DETAILS -->
+  <section>
+    <div class="section-inner">
+      <div class="reveal" style="margin-bottom: 2.5rem;">
+        <p class="section-label">Direct Contact</p>
+        <h2 class="section-title">How to Reach Us</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card reveal reveal-delay-1">
+          <div class="contact-icon">📞</div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:+19544081730">(954) 408-1730</a></div>
+          <div class="contact-sub">Call or text for fastest response</div>
+        </div>
+        <div class="contact-card reveal reveal-delay-2">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a></div>
+          <div class="contact-sub">General inquiries and booking requests</div>
+        </div>
+        <div class="contact-card reveal reveal-delay-3">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-label">Website</div>
+          <div class="contact-value">amgaviation.net</div>
+          <div class="contact-sub">Full service information and booking portal</div>
+        </div>
+        <div class="contact-card reveal reveal-delay-4">
+          <div class="contact-icon">📍</div>
+          <div class="contact-label">Service Area</div>
+          <div class="contact-value">South Florida</div>
+          <div class="contact-sub">Base of operations — nationwide coverage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSE EXPECTATIONS -->
+  <section class="response-section">
+    <div class="response-inner">
+      <div class="reveal" style="margin-bottom: 2.5rem;">
+        <p class="section-label">Response Expectations</p>
+        <h2 class="section-title">What to Expect</h2>
+      </div>
+      <div class="response-grid">
+        <div class="response-card reveal reveal-delay-1">
+          <div class="response-heading">General Inquiries</div>
+          <div class="response-text">Email inquiries are typically responded to within one business day. For urgent matters, call or text directly.</div>
+        </div>
+        <div class="response-card reveal reveal-delay-2">
+          <div class="response-heading">Booking Requests</div>
+          <div class="response-text">Booking requests submitted through the form are reviewed and responded to within 24 hours. We will confirm crew availability and mission parameters before finalizing.</div>
+        </div>
+        <div class="response-card reveal reveal-delay-3">
+          <div class="response-heading">Time-Sensitive Operations</div>
+          <div class="response-text">For urgent or same-day ferry requests, call (954) 408-1730 directly. We maintain 24/7 availability for time-critical mission coordination.</div>
+        </div>
+        <div class="response-card reveal reveal-delay-4">
+          <div class="response-heading">Pilot Network Applications</div>
+          <div class="response-text">Pilot network applications are reviewed on a rolling basis. You will receive confirmation of receipt and a follow-up if your qualifications match current network needs.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <p class="section-label" style="justify-content: center; display: flex;">Ready to Get Started?</p>
+      <h2>Submit a booking request.</h2>
+      <p>Use our booking form to provide mission details and we will confirm crew availability and coordination requirements within 24 hours.</p>
+      <a href="/booking-request" class="btn-primary">Request Booking</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">AMG Aviation Group</div>
+          <p class="footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="/services">Aircraft Ferry</a><a href="/services">Aircraft Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:+19544081730">(954) 408-1730</a>
+          <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+          <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+        <span>South Florida · Nationwide Operations</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

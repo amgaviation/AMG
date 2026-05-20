@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aircraft — AMG Aviation Group</title>
+  <meta name="description" content="Piston, turbine jet, and helicopter platforms supported by AMG Aviation Group pilots and crew." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #050B14; --bg-secondary: #07111F; --bg-accent: #0E223D;
+      --blue-steel: #1D4E89; --blue-light: #3B82F6;
+      --text-white: #FFFFFF; --text-soft: #E5E7EB; --text-muted: #9CA3AF;
+      --border-dark: #1F2937; --glass-border: rgba(255,255,255,0.14);
+      --glass-hover: rgba(255,255,255,0.06); --nav-height: 72px;
+      --font: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-primary); color: var(--text-soft); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-height); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(5,11,20,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-color: var(--glass-border); }
+    .nav-logo { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-white); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+    .nav-cta { font-size: 0.78rem !important; font-weight: 600 !important; color: var(--text-white) !important; background: var(--blue-steel); padding: 0.5rem 1.2rem; border-radius: 6px; }
+    .nav-cta:hover { background: var(--blue-light) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(5,11,20,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); padding: 1.5rem 5vw 2rem; z-index: 999; transform: translateY(-8px); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none; }
+    .mobile-menu.open { display: block; transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; font-size: 1rem; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dark); transition: color 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--text-white); }
+
+    .page-hero { padding: calc(var(--nav-height) + 5rem) 5vw 4rem; text-align: center; background: linear-gradient(180deg, #050B14 0%, #07111F 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(29,78,137,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+
+    section { padding: 5rem 5vw; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { margin-bottom: 2.8rem; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 0.7rem; }
+    .section-title { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; color: var(--text-white); letter-spacing: -0.02em; }
+    .section-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.7; }
+
+    .aircraft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--border-dark); border: 1px solid var(--border-dark); border-radius: 12px; overflow: hidden; }
+
+    .aircraft-card { background: var(--bg-accent); padding: 1.8rem 1.6rem; transition: background 0.25s; }
+    .aircraft-card:hover { background: #112840; }
+    .aircraft-make { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 0.4rem; }
+    .aircraft-model { font-size: 1.05rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.4rem; }
+    .aircraft-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    .jet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .jet-card { background: var(--bg-accent); border: 1px solid var(--glass-border); border-radius: 12px; padding: 2rem 1.8rem; transition: border-color 0.25s, transform 0.25s; }
+    .jet-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-3px); }
+    .jet-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); padding: 0.25rem 0.65rem; border-radius: 4px; margin-bottom: 1rem; }
+    .jet-model { font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.3rem; }
+    .jet-variant { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .jet-specs { display: flex; flex-direction: column; gap: 0.5rem; }
+    .jet-spec { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border-dark); }
+    .jet-spec:last-child { border-bottom: none; }
+    .spec-label { color: var(--text-muted); }
+    .spec-value { color: var(--text-white); font-weight: 500; }
+
+    .avionics { background: var(--bg-secondary); }
+    .avionics-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+    .av-card { background: var(--bg-primary); border: 1px solid var(--border-dark); border-radius: 10px; padding: 1.5rem; transition: border-color 0.25s; }
+    .av-card:hover { border-color: var(--glass-border); }
+    .av-title { font-size: 0.9rem; font-weight: 600; color: var(--text-white); margin-bottom: 0.4rem; }
+    .av-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    .divider { width: 100%; height: 1px; background: var(--border-dark); }
+
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border-dark); padding: 4rem 5vw 2.5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-dark); }
+    .footer-brand-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-white); margin-bottom: 0.8rem; }
+    .footer-brand-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 240px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .footer-col a { display: block; font-size: 0.88rem; color: var(--text-muted); text-decoration: none; margin-bottom: 0.65rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text-white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; font-size: 0.78rem; color: var(--text-muted); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-hamburger { display: flex; } .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">AMG Aviation</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/our-team">Our Team</a></li>
+      <li><a href="/services">Services</a></li><li><a href="/aircraft" class="active">Aircraft</a></li>
+      <li><a href="/pilot-network">Pilot Network</a></li><li><a href="/contact">Contact</a></li>
+      <li><a href="/booking-request" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+    <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+    <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+    <a href="/booking-request">Booking Request</a>
+  </div>
+
+  <div class="page-hero">
+    <span class="page-label">Fleet Coverage</span>
+    <h1>Aircraft Platforms</h1>
+    <p>Piston singles, multi-engine turboprops, jets, and rotorcraft — our network covers the platforms that matter.</p>
+  </div>
+
+  <!-- PISTON -->
+  <section>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-label">Piston Aircraft</p>
+        <h2 class="section-title">Single &amp; Multi-Engine Piston</h2>
+        <p class="section-sub">General aviation platforms operated by commercially certificated, instrument-rated crew.</p>
+      </div>
+      <div class="aircraft-grid reveal">
+        <div class="aircraft-card">
+          <div class="aircraft-make">Cessna</div>
+          <div class="aircraft-model">172 / 182 / 206</div>
+          <div class="aircraft-desc">High-wing singles. IFR equipped ferry ops.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Piper</div>
+          <div class="aircraft-model">PA-28 / PA-32</div>
+          <div class="aircraft-desc">Cherokee, Archer, Arrow, Lance variants.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Beechcraft</div>
+          <div class="aircraft-model">Bonanza / Baron</div>
+          <div class="aircraft-desc">V-tail and A36 singles, B55 and B58 twins.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Piper</div>
+          <div class="aircraft-model">PA-34 Seneca</div>
+          <div class="aircraft-desc">Multi-engine IFR platform for longer routing.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Cessna</div>
+          <div class="aircraft-model">310 / 340 / 414</div>
+          <div class="aircraft-desc">Pressurized and non-pressurized light twins.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Cirrus</div>
+          <div class="aircraft-model">SR20 / SR22</div>
+          <div class="aircraft-desc">Glass cockpit singles with CAPS parachute system.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- JETS -->
+  <section style="background: var(--bg-secondary);">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-label">Turbine Jets</p>
+        <h2 class="section-title">Citation &amp; Light Jet Platforms</h2>
+        <p class="section-sub">Type-rated crew for Citation and compatible light jet operations.</p>
+      </div>
+      <div class="jet-grid">
+        <div class="jet-card reveal reveal-delay-1">
+          <span class="jet-badge">★ Primary Type</span>
+          <div class="jet-model">Citation CJ Series</div>
+          <div class="jet-variant">CE-525 / CJ1 / CJ2 / CJ3 / CJ4</div>
+          <div class="jet-specs">
+            <div class="jet-spec"><span class="spec-label">Rating</span><span class="spec-value">CE-525(S) Type Rated</span></div>
+            <div class="jet-spec"><span class="spec-label">Crew</span><span class="spec-value">Single or Dual Pilot</span></div>
+            <div class="jet-spec"><span class="spec-label">Range</span><span class="spec-value">Domestic &amp; International</span></div>
+          </div>
+        </div>
+        <div class="jet-card reveal reveal-delay-2">
+          <span class="jet-badge">Supported</span>
+          <div class="jet-model">Citation M2 / Encore</div>
+          <div class="jet-variant">CE-525 Compatible Variants</div>
+          <div class="jet-specs">
+            <div class="jet-spec"><span class="spec-label">Rating</span><span class="spec-value">CE-525 Type Covered</span></div>
+            <div class="jet-spec"><span class="spec-label">Operations</span><span class="spec-value">Ferry, Delivery, Maintenance</span></div>
+            <div class="jet-spec"><span class="spec-label">Avionics</span><span class="spec-value">Garmin G3000 / ProLine</span></div>
+          </div>
+        </div>
+        <div class="jet-card reveal reveal-delay-3">
+          <span class="jet-badge">Network</span>
+          <div class="jet-model">Cessna Citation 500</div>
+          <div class="jet-variant">Original Citation / Citation I</div>
+          <div class="jet-specs">
+            <div class="jet-spec"><span class="spec-label">Crew</span><span class="spec-value">Dual Pilot Operations</span></div>
+            <div class="jet-spec"><span class="spec-label">Certification</span><span class="spec-value">FAR Part 91</span></div>
+            <div class="jet-spec"><span class="spec-label">Use Case</span><span class="spec-value">Ferry, Repositioning</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- HELICOPTERS -->
+  <section>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-label">Rotorcraft</p>
+        <h2 class="section-title">Helicopter Platforms</h2>
+        <p class="section-sub">Piston and turbine helicopter operations through our qualified rotorcraft network.</p>
+      </div>
+      <div class="aircraft-grid reveal">
+        <div class="aircraft-card">
+          <div class="aircraft-make">Robinson</div>
+          <div class="aircraft-model">R22 / R44 / R66</div>
+          <div class="aircraft-desc">Piston and turbine Robinson fleet operations.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Bell</div>
+          <div class="aircraft-model">206 JetRanger</div>
+          <div class="aircraft-desc">Light turbine single. Widely operated platform.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Bell</div>
+          <div class="aircraft-model">407</div>
+          <div class="aircraft-desc">Single turbine, glass cockpit variants available.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Airbus</div>
+          <div class="aircraft-model">AS350 / H125</div>
+          <div class="aircraft-desc">B2/B3 variants, high-performance turbine single.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Sikorsky</div>
+          <div class="aircraft-model">S-76</div>
+          <div class="aircraft-desc">Corporate twin turbine transport helicopter.</div>
+        </div>
+        <div class="aircraft-card">
+          <div class="aircraft-make">Airbus</div>
+          <div class="aircraft-model">EC135 / EC145</div>
+          <div class="aircraft-desc">Twin turbine, IFR capable rotorcraft platforms.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AVIONICS -->
+  <section class="avionics">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-label">Avionics Familiarity</p>
+        <h2 class="section-title">Glass Cockpit &amp; IFR Platforms</h2>
+        <p class="section-sub">Crew familiar with current-generation avionics suites across the supported fleet.</p>
+      </div>
+      <div class="avionics-cards">
+        <div class="av-card reveal reveal-delay-1">
+          <div class="av-title">Garmin G1000 / G3000</div>
+          <div class="av-desc">Integrated glass cockpit. Primary suite across Citation CJ series and Cessna piston platforms.</div>
+        </div>
+        <div class="av-card reveal reveal-delay-2">
+          <div class="av-title">Rockwell Collins ProLine</div>
+          <div class="av-desc">ProLine 21 and ProLine Fusion. Common in Citation variants and larger jets.</div>
+        </div>
+        <div class="av-card reveal reveal-delay-3">
+          <div class="av-title">Avidyne / Aspen</div>
+          <div class="av-desc">Retrofit glass and EFD displays across piston fleet. IFD540/440 FMS familiar.</div>
+        </div>
+        <div class="av-card reveal">
+          <div class="av-title">Traditional Steam Gauges</div>
+          <div class="av-desc">Analog instrumentation. VOR/ILS/GPS IFR approaches. Supported across all vintage aircraft.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">AMG Aviation Group</div>
+          <p class="footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Navigation</div>
+          <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Services</div>
+          <a href="/services">Aircraft Ferry</a><a href="/services">Aircraft Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="tel:+19544081730">(954) 408-1730</a>
+          <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+          <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+        <span>South Florida · Nationwide Operations</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
