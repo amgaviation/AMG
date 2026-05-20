@@ -316,6 +316,21 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="/"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        try { window.parent.location.href = this.getAttribute('href'); }
+        catch(err) { window.location.href = this.getAttribute('href'); }
+      });
+    });
+    function postHeight() {
+      var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ type: 'wix-amg-resize', height: h }, '*');
+    }
+    window.addEventListener('load', postHeight);
+    window.addEventListener('resize', postHeight);
+    new MutationObserver(postHeight).observe(document.body, { childList: true, subtree: true, attributes: true });
   </script>
 </body>
 </html>

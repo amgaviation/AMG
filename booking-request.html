@@ -375,6 +375,21 @@
       btn.style.background = '#166534';
       btn.disabled = true;
     });
+
+    document.querySelectorAll('a[href^="/"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        try { window.parent.location.href = this.getAttribute('href'); }
+        catch(err) { window.location.href = this.getAttribute('href'); }
+      });
+    });
+    function postHeight() {
+      var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ type: 'wix-amg-resize', height: h }, '*');
+    }
+    window.addEventListener('load', postHeight);
+    window.addEventListener('resize', postHeight);
+    new MutationObserver(postHeight).observe(document.body, { childList: true, subtree: true, attributes: true });
   </script>
 </body>
 </html>
