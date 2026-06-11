@@ -1,0 +1,69 @@
+<script>
+window.amgPages = window.amgPages || {};
+var amgP = window.amgPages;
+
+amgP['/booking-request'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Get Started</span>
+  <h1>Booking Request</h1>
+  <p>Submit your mission details and our team will respond with crew availability within 24 hours.</p>
+</div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Process</span><h2 class="amg-title-sm">What Happens After You Submit</h2></div>
+    <div class="amg-grid">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">📋</div><div class="amg-card-title">Mission-Based Review</div><div class="amg-card-desc">Every request reviewed against aircraft type, routing, timing, and crew needs.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">📡</div><div class="amg-card-title">Professional Coordination</div><div class="amg-card-desc">Crew assignment and availability confirmed before formal response.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d3"><div class="amg-card-icon">✅</div><div class="amg-card-title">Safety-First Execution</div><div class="amg-card-desc">All operations executed with qualified crew and full regulatory compliance.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Steps</span><h2 class="amg-title-sm">Four Steps to a Confirmed Mission</h2></div>
+    <div class="amg-steps amg-reveal">
+      <div class="amg-step"><div class="amg-step-num">Step 01</div><div class="amg-step-title">Submit Details</div><div class="amg-step-desc">Fill out the form with aircraft, date, service type, and mission description.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 02</div><div class="amg-step-title">Review Requirements</div><div class="amg-step-desc">Our team matches qualified crew to your aircraft type and routing.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 03</div><div class="amg-step-title">Confirm Availability</div><div class="amg-step-desc">We confirm crew and contact you to finalize scheduling.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 04</div><div class="amg-step-title">Coordinate Mission</div><div class="amg-step-desc">Full operational coordination handled by AMG Aviation Group.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-form-wrap">
+      <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Booking Form</span><h2 class="amg-title-sm">Submit Your Request</h2></div>
+      <form class="amg-form amg-reveal" id="amg-booking-form" novalidate>
+        <div class="amg-form-row">
+          <div class="amg-form-group"><label>First Name</label><input type="text" name="firstName" autocomplete="given-name" required /></div>
+          <div class="amg-form-group"><label>Last Name</label><input type="text" name="lastName" autocomplete="family-name" required /></div>
+        </div>
+        <div class="amg-form-group"><label>Company Name</label><input type="text" name="company" autocomplete="organization" /></div>
+        <div class="amg-form-row">
+          <div class="amg-form-group"><label>Email</label><input type="email" name="email" required /></div>
+          <div class="amg-form-group"><label>Phone</label><input type="tel" name="phone" /></div>
+        </div>
+        <div class="amg-form-group">
+          <label>Requested Service Date</label>
+          <div class="amg-date-group">
+            <select name="month" aria-label="Month"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
+            <select name="day" aria-label="Day"><option value="">Day</option></select>
+            <select name="year" aria-label="Year"><option value="">Year</option></select>
+          </div>
+          <span style="font-size:0.75rem;color:#9CA3AF;margin-top:0.2rem;display:block">If unsure, please choose any date.</span>
+        </div>
+        <div class="amg-form-group">
+          <label>Services Desired</label>
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option>Aircraft Ferry</option><option>Aircraft Relocation</option><option>Maintenance Flights</option><option>Delivery Flights</option><option>Crew Staffing</option><option>Contract Pilot Services</option><option>Maintenance Subscription</option><option>Contract Pilot Subscription</option>
+          </select>
+        </div>
+        <div class="amg-form-group"><label>Mission Details</label><textarea name="mission" rows="4" placeholder="Please describe in a few words how we can meet your needs"></textarea></div>
+        <div class="amg-form-group"><label>Additional Details / Questions</label><textarea name="additional" rows="3" placeholder="Any additional information or questions"></textarea></div>
+        <button type="submit" class="amg-btn-submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>`;
+</script>

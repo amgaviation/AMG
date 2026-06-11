@@ -1,0 +1,135 @@
+<script>
+window.amgPages = window.amgPages || {};
+var amgP = window.amgPages;
+
+amgP['/pilot-network'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Join Our Nationwide Pilot Network</span>
+  <h1>Pilot Network<br>Application</h1>
+  <p>1099 contract ferry pilots and flight support professionals. Submit your qualifications to join the AMG Aviation Group network.</p>
+  <span class="amg-notice">⚠ 1099 Contract Work ONLY</span>
+</div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner-sm">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Network Application</span><h2 class="amg-title-sm">Submit Your Qualifications</h2></div>
+    <form class="amg-reveal" id="amg-pilot-form" novalidate>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">👤</span><span class="amg-form-block-title">General Information</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Legal Name</label><input type="text" class="amg-form" name="legalName" required autocomplete="name" /></div><div class="amg-form-group"><label class="amg-form">Business Name</label><input type="text" class="amg-form" name="businessName" /></div></div>
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Email</label><input type="email" class="amg-form" name="email" required /></div><div class="amg-form-group"><label class="amg-form">Phone</label><input type="tel" class="amg-form" name="phone" /></div></div>
+          <div class="amg-form-group"><label class="amg-form">Address</label><input type="text" class="amg-form" name="address" /></div>
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Languages</label><input type="text" class="amg-form" name="languages" placeholder="e.g. English, Spanish" /></div><div class="amg-form-group"><label class="amg-form">Nearest Airport (ICAO)</label><input type="text" class="amg-form" name="airport" placeholder="e.g. KFLL" /></div></div>
+          <div class="amg-form-row">
+            <div class="amg-form-group"><label class="amg-form">Valid Passport?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="passport" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="passport" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+            <div class="amg-form-group"><label class="amg-form">Minimum Notice Required</label><select class="amg-form" name="notice"><option value="">Select</option><option>Same day</option><option>24 hours</option><option>48 hours</option><option>72 hours</option><option>1 week</option></select></div>
+          </div>
+          <div class="amg-form-row-3">
+            <div class="amg-form-group"><label class="amg-form">Rate — Single Engine</label><input type="text" class="amg-form" name="rateSE" placeholder="e.g. $400/day" /></div>
+            <div class="amg-form-group"><label class="amg-form">Rate — Multi-Engine</label><input type="text" class="amg-form" name="rateMEL" placeholder="e.g. $600/day" /></div>
+            <div class="amg-form-group"><label class="amg-form">Rate — Turbine</label><input type="text" class="amg-form" name="rateTurbine" placeholder="e.g. $900/day" /></div>
+          </div>
+          <div class="amg-form-group"><label class="amg-form">Availability Start Date</label><input type="date" class="amg-form" name="availStart" /></div>
+        </div>
+      </div>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">📋</span><span class="amg-form-block-title">Certificates &amp; Ratings</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-group"><label class="amg-form">FAA Medical Class</label><select class="amg-form" name="medical"><option value="">Select</option><option>First Class</option><option>Second Class</option><option>Third Class</option><option>BasicMed</option></select></div>
+          <div class="amg-form-group"><label class="amg-form">Certificate Type (select all)</label><div class="amg-cb-group"><label class="amg-cb-item"><input type="checkbox" name="cert" value="ATP" /><span class="amg-cb-label">ATP</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="Commercial" /><span class="amg-cb-label">Commercial</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="ATP-H" /><span class="amg-cb-label">ATP-H</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="CPL-H" /><span class="amg-cb-label">CPL-H</span></label></div></div>
+          <div class="amg-form-group"><label class="amg-form">Ratings (select all)</label><div class="amg-cb-group"><label class="amg-cb-item"><input type="checkbox" name="rating" value="ASEL" /><span class="amg-cb-label">ASEL</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="AMEL" /><span class="amg-cb-label">AMEL</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="IFR" /><span class="amg-cb-label">IFR</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFI" /><span class="amg-cb-label">CFI</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFII" /><span class="amg-cb-label">CFII</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="MEI" /><span class="amg-cb-label">MEI</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="Tailwheel" /><span class="amg-cb-label">Tailwheel</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="High Performance" /><span class="amg-cb-label">High Perf</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="IFR-H" /><span class="amg-cb-label">IFR-H</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFI-H" /><span class="amg-cb-label">CFI-H</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="NVG-H" /><span class="amg-cb-label">NVG-H</span></label></div></div>
+          <div class="amg-form-group"><label class="amg-form">Type Ratings</label><input type="text" class="amg-form" name="typeRatings" placeholder="e.g. CE-525, BE-400, B737" /></div>
+        </div>
+      </div>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">✈️</span><span class="amg-form-block-title">Flight Time</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Total Time (hours)</label><input type="number" class="amg-form" name="totalTime" min="0" placeholder="e.g. 2500" /></div><div class="amg-form-group"><label class="amg-form">PIC Time (hours)</label><input type="number" class="amg-form" name="picTime" min="0" placeholder="e.g. 1800" /></div></div>
+          <div class="amg-form-group"><label class="amg-form">Multi-Engine Time (hours)</label><input type="number" class="amg-form" name="multiTime" min="0" placeholder="e.g. 800" /></div>
+          <div class="amg-form-row">
+            <div class="amg-form-group"><label class="amg-form">International Experience?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="intl" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="intl" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+            <div class="amg-form-group"><label class="amg-form">Oceanic Experience?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="oceanic" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="oceanic" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+          </div>
+          <div class="amg-form-group"><label class="amg-form">Additional Comments</label><textarea class="amg-form" name="comments" rows="4" placeholder="Experience, availability, aircraft preferences"></textarea></div>
+        </div>
+      </div>
+      <button type="submit" class="amg-btn-submit">Submit Application</button>
+    </form>
+  </div>
+</section>`;
+
+function amgInit() {
+  var amgP = window.amgPages || {};
+  /* ── ROUTING ── */
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  var content = amgP[path] || amgP['/'];
+  document.getElementById('amg-main').innerHTML = content;
+  
+  /* Mark active nav link */
+  document.querySelectorAll('#amg-nav a[data-page]').forEach(function(a) {
+    if (a.getAttribute('data-page') === path) a.classList.add('active');
+  });
+  
+  /* ── POPULATE DATE SELECTS ── */
+  var daySelect = document.querySelector('[name="day"]');
+  var yearSelect = document.querySelector('[name="year"]');
+  if (daySelect) { for (var d=1;d<=31;d++) { var o=document.createElement('option'); o.value=d; o.textContent=d; daySelect.appendChild(o); } }
+  if (yearSelect) { var y=new Date().getFullYear(); for (var i=y;i<=y+3;i++) { var oy=document.createElement('option'); oy.value=i; oy.textContent=i; yearSelect.appendChild(oy); } }
+  
+  /* ── FORM SUBMIT HANDLERS ── */
+  ['amg-booking-form','amg-pilot-form'].forEach(function(id) {
+    var form = document.getElementById(id);
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = this.querySelector('.amg-btn-submit');
+      btn.textContent = 'Submitted ✓';
+      btn.style.background = '#166534';
+      btn.disabled = true;
+    });
+  });
+  
+  /* ── NAV SCROLL ── */
+  var nav = document.getElementById('amg-nav');
+  var container = document.getElementById('amg-site');
+  container.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', container.scrollTop > 40);
+  }, { passive: true });
+  
+  /* ── HAMBURGER ── */
+  var hamburger = document.getElementById('amg-hamburger');
+  var mobileMenu = document.getElementById('amg-mobile-menu');
+  hamburger.addEventListener('click', function() {
+    var open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+  
+  /* ── SCROLL REVEAL ── */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px', root: container });
+  document.querySelectorAll('.amg-reveal').forEach(function(el) { observer.observe(el); });
+  
+  /* ── NAV LINK INTERCEPT ── */
+  document.querySelectorAll('#amg-site a[href^="/"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      try { window.parent.location.href = this.getAttribute('href'); }
+      catch(err) { window.location.href = this.getAttribute('href'); }
+    });
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', amgInit);
+} else {
+  amgInit();
+}
+</script>

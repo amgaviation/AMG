@@ -1,0 +1,697 @@
+<style>
+#amg-site{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;background:#050B14;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;font-family:'Inter',-apple-system,'Helvetica Neue',sans-serif;color:#E5E7EB;line-height:1.6;-webkit-font-smoothing:antialiased}
+#amg-site *,#amg-site *::before,#amg-site *::after{box-sizing:border-box;margin:0;padding:0}
+#amg-site a{text-decoration:none;transition:color 0.2s}
+#amg-site img{max-width:100%;height:auto;display:block}
+
+/* NAV */
+#amg-nav{position:sticky;top:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;transition:background 0.4s,backdrop-filter 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
+#amg-nav.scrolled{background:rgba(5,11,20,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:rgba(255,255,255,0.14)}
+.amg-logo{font-size:1.05rem;font-weight:700;letter-spacing:0.08em;color:#fff;text-transform:uppercase}
+.amg-nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none}
+.amg-nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:0.04em;color:#9CA3AF;text-transform:uppercase}
+.amg-nav-links a:hover,.amg-nav-links a.active{color:#fff}
+.amg-nav-cta{font-size:0.78rem!important;font-weight:600!important;color:#fff!important;background:#1D4E89;padding:0.5rem 1.2rem;border-radius:6px}
+.amg-nav-cta:hover{background:#3B82F6!important}
+.amg-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.amg-hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.amg-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.amg-hamburger.open span:nth-child(2){opacity:0}
+.amg-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#amg-mobile-menu{display:none;background:rgba(5,11,20,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.14);padding:1.5rem 5vw 2rem;transition:opacity 0.3s}
+#amg-mobile-menu.open{display:block}
+#amg-mobile-menu a{display:block;font-size:1rem;font-weight:500;color:#E5E7EB;padding:0.85rem 0;border-bottom:1px solid #1F2937}
+#amg-mobile-menu a:last-child{border-bottom:none}
+#amg-mobile-menu a:hover{color:#fff}
+
+/* HERO */
+.amg-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 5vw 5rem;background:linear-gradient(180deg,#050B14 0%,#07111F 60%,#050B14 100%);position:relative;overflow:hidden}
+.amg-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(29,78,137,0.18) 0%,transparent 70%);pointer-events:none}
+.amg-hero>div{position:relative;z-index:1}
+.amg-eyebrow{display:inline-block;font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#3B82F6;margin-bottom:1.5rem}
+.amg-hero h1{font-size:clamp(2.4rem,5.5vw,4.8rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:#fff;max-width:820px;margin:0 auto 1.5rem}
+.amg-hero-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:#9CA3AF;max-width:600px;margin:0 auto 2.5rem;line-height:1.7}
+.amg-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* BUTTONS */
+.amg-btn-primary{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.88rem;font-weight:600;color:#fff;background:#1D4E89;padding:0.85rem 2rem;border-radius:8px;transition:background 0.25s,transform 0.2s;border:none;cursor:pointer;font-family:inherit}
+.amg-btn-primary:hover{background:#3B82F6;transform:translateY(-1px);color:#fff}
+.amg-btn-secondary{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.88rem;font-weight:500;color:#E5E7EB;background:transparent;padding:0.85rem 2rem;border-radius:8px;border:1px solid rgba(255,255,255,0.14);transition:background 0.25s,border-color 0.25s,transform 0.2s;cursor:pointer;font-family:inherit}
+.amg-btn-secondary:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.25);transform:translateY(-1px);color:#E5E7EB}
+
+/* SECTIONS */
+.amg-section{padding:5.5rem 5vw}
+.amg-section-inner{max-width:1100px;margin:0 auto}
+.amg-section-inner-sm{max-width:860px;margin:0 auto}
+.amg-label{font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#3B82F6;margin-bottom:1rem;display:block}
+.amg-title{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;letter-spacing:-0.02em;color:#fff;line-height:1.15;margin-bottom:0.6rem}
+.amg-title-sm{font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:700;letter-spacing:-0.02em;color:#fff;margin-bottom:0.6rem}
+.amg-sub{font-size:0.95rem;color:#9CA3AF;line-height:1.75;max-width:580px}
+
+/* CARDS */
+.amg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.amg-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.amg-card{background:#0E223D;border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:2rem;transition:border-color 0.25s,transform 0.25s}
+.amg-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-3px)}
+.amg-card-icon{font-size:1.6rem;margin-bottom:1rem}
+.amg-card-tag{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3B82F6;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);padding:0.25rem 0.6rem;border-radius:4px;margin-bottom:0.8rem}
+.amg-card-title{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+.amg-card-desc{font-size:0.86rem;color:#9CA3AF;line-height:1.75}
+
+/* CAPABILITIES GRID */
+.amg-cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5px;background:#1F2937;border:1px solid #1F2937;border-radius:12px;overflow:hidden;margin-top:2.5rem}
+.amg-cap-card{background:#07111F;padding:2.5rem 2rem;text-align:center;transition:background 0.25s}
+.amg-cap-card:hover{background:#0E223D}
+.amg-cap-icon{font-size:1.8rem;margin-bottom:1rem}
+.amg-cap-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.amg-cap-desc{font-size:0.85rem;color:#9CA3AF}
+
+/* PHILOSOPHY / 2-COL */
+.amg-2col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.amg-2col p{color:#9CA3AF;font-size:0.95rem;line-height:1.8;margin-top:1.5rem}
+.amg-2col p+p{margin-top:1rem}
+.amg-value-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.amg-value-card{background:#0E223D;border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:1.6rem 1.4rem;transition:border-color 0.25s,transform 0.25s}
+.amg-value-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-3px)}
+.amg-value-dot{width:8px;height:8px;background:#3B82F6;border-radius:50%;margin-bottom:0.8rem}
+.amg-value-title{font-size:0.95rem;font-weight:600;color:#fff}
+
+/* PAGE HERO */
+.amg-page-hero{padding:6rem 5vw 4rem;text-align:center;background:linear-gradient(180deg,#050B14 0%,#07111F 100%);position:relative;overflow:hidden}
+.amg-page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(29,78,137,0.15) 0%,transparent 70%);pointer-events:none}
+.amg-page-hero>*{position:relative;z-index:1}
+.amg-page-hero h1{font-size:clamp(2.2rem,4.5vw,4rem);font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1.1;margin-bottom:1rem}
+.amg-page-hero p{font-size:1.05rem;color:#9CA3AF;max-width:560px;margin:0 auto;line-height:1.75}
+
+/* TEAM */
+.amg-team-card{background:#0E223D;border:1px solid rgba(255,255,255,0.14);border-radius:16px;overflow:hidden;transition:border-color 0.25s,transform 0.3s}
+.amg-team-card:hover{border-color:rgba(59,130,246,0.35);transform:translateY(-4px)}
+.amg-team-photo{width:100%;aspect-ratio:4/3;object-fit:cover;background:#07111F;display:block}
+.amg-team-photo-ph{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#07111F 0%,#0E223D 100%);display:flex;align-items:center;justify-content:center;font-size:4rem;color:#1F2937}
+.amg-team-body{padding:2rem 1.8rem}
+.amg-team-role{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3B82F6;margin-bottom:0.5rem}
+.amg-team-name{font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:1.2rem}
+.amg-quals{display:flex;flex-wrap:wrap;gap:0.5rem}
+.amg-qual{font-size:0.72rem;font-weight:500;color:#E5E7EB;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);padding:0.3rem 0.7rem;border-radius:4px}
+.amg-team-hours{margin-top:1rem;font-size:0.85rem;color:#9CA3AF}
+
+/* AIRCRAFT GRID */
+.amg-aircraft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5px;background:#1F2937;border:1px solid #1F2937;border-radius:12px;overflow:hidden}
+.amg-ac-card{background:#0E223D;padding:1.8rem 1.6rem;transition:background 0.25s}
+.amg-ac-card:hover{background:#112840}
+.amg-ac-make{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#3B82F6;margin-bottom:0.4rem}
+.amg-ac-model{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.amg-ac-desc{font-size:0.82rem;color:#9CA3AF;line-height:1.6}
+
+/* JET CARDS */
+.amg-jet-card{background:#0E223D;border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:2rem 1.8rem;transition:border-color 0.25s,transform 0.25s}
+.amg-jet-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-3px)}
+.amg-jet-badge{display:inline-flex;align-items:center;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#3B82F6;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);padding:0.25rem 0.65rem;border-radius:4px;margin-bottom:1rem}
+.amg-jet-model{font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:0.3rem}
+.amg-jet-variant{font-size:0.82rem;color:#9CA3AF;margin-bottom:1rem}
+.amg-spec{display:flex;justify-content:space-between;font-size:0.82rem;padding:0.4rem 0;border-bottom:1px solid #1F2937}
+.amg-spec:last-child{border-bottom:none}
+.amg-spec-label{color:#9CA3AF}
+.amg-spec-value{color:#fff;font-weight:500}
+
+/* CONTACT */
+.amg-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.amg-contact-card{background:#0E223D;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:2rem 1.8rem;transition:border-color 0.25s,transform 0.25s}
+.amg-contact-card:hover{border-color:rgba(59,130,246,0.4);transform:translateY(-3px)}
+.amg-contact-lbl{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#9CA3AF;margin-bottom:0.5rem}
+.amg-contact-val{font-size:1.05rem;font-weight:600;color:#fff}
+.amg-contact-val a{color:#fff}
+.amg-contact-val a:hover{color:#3B82F6}
+.amg-contact-sub{font-size:0.82rem;color:#9CA3AF;margin-top:0.4rem}
+
+/* PROCESS STEPS */
+.amg-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0}
+.amg-step{padding:2rem 1.5rem;border:1px solid #1F2937;background:#07111F}
+.amg-step:first-child{border-radius:12px 0 0 12px}
+.amg-step:last-child{border-radius:0 12px 12px 0}
+.amg-step-num{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#3B82F6;margin-bottom:0.6rem}
+.amg-step-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.amg-step-desc{font-size:0.82rem;color:#9CA3AF;line-height:1.65}
+
+/* FORM */
+.amg-form-wrap{max-width:720px;margin:0 auto}
+.amg-form{display:flex;flex-direction:column;gap:1.4rem}
+.amg-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.amg-form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.amg-form-group{display:flex;flex-direction:column;gap:0.4rem}
+.amg-form label{font-size:0.75rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#9CA3AF}
+.amg-form input,.amg-form select,.amg-form textarea{font-family:inherit;font-size:0.92rem;color:#fff;background:#0E223D;border:1px solid #1F2937;border-radius:7px;padding:0.72rem 0.9rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;width:100%}
+.amg-form input::placeholder,.amg-form textarea::placeholder{color:#9CA3AF;opacity:0.6}
+.amg-form input:focus,.amg-form select:focus,.amg-form textarea:focus{border-color:#3B82F6}
+.amg-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.9rem center;padding-right:2.4rem;cursor:pointer}
+.amg-form select option{background:#0E223D}
+.amg-form textarea{resize:vertical;min-height:90px;line-height:1.6}
+.amg-form-block{border:1px solid #1F2937;border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.amg-form-block-hdr{background:#0E223D;padding:1.2rem 1.8rem;display:flex;align-items:center;gap:0.7rem;border-bottom:1px solid #1F2937}
+.amg-form-block-icon{font-size:1.1rem}
+.amg-form-block-title{font-size:0.88rem;font-weight:700;color:#fff}
+.amg-form-block-body{background:#050B14;padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem}
+.amg-cb-group{display:flex;flex-wrap:wrap;gap:0.6rem}
+.amg-cb-item{display:flex;align-items:center;gap:0.4rem;cursor:pointer}
+.amg-cb-item input[type=checkbox]{width:16px;height:16px;-webkit-appearance:none;appearance:none;border:1px solid #1F2937;border-radius:3px;background:#0E223D;cursor:pointer;transition:background 0.15s;flex-shrink:0;padding:0}
+.amg-cb-item input[type=checkbox]:checked{background:#1D4E89;border-color:#1D4E89}
+.amg-cb-label{font-size:0.83rem;color:#E5E7EB;text-transform:none;letter-spacing:0;font-weight:400}
+.amg-radio-group{display:flex;gap:1.2rem;flex-wrap:wrap}
+.amg-radio-item{display:flex;align-items:center;gap:0.4rem;cursor:pointer}
+.amg-radio-item input[type=radio]{width:16px;height:16px;-webkit-appearance:none;appearance:none;border:1px solid #1F2937;border-radius:50%;background:#0E223D;cursor:pointer;flex-shrink:0;padding:0;transition:all 0.15s}
+.amg-radio-item input[type=radio]:checked{background:#1D4E89;border-color:#1D4E89;box-shadow:inset 0 0 0 3px #0E223D}
+.amg-radio-label{font-size:0.88rem;color:#E5E7EB;text-transform:none;letter-spacing:0;font-weight:400}
+.amg-date-group{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem}
+input[type=file].amg-file{font-size:0.85rem;color:#9CA3AF;cursor:pointer;padding:0.6rem 0.9rem}
+input[type=file].amg-file::file-selector-button{font-family:inherit;font-size:0.78rem;font-weight:600;color:#fff;background:#1D4E89;border:none;padding:0.4rem 0.9rem;border-radius:5px;cursor:pointer;margin-right:0.8rem}
+.amg-btn-submit{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;font-family:inherit;font-size:0.95rem;font-weight:600;color:#fff;background:#1D4E89;border:none;padding:1rem 2.5rem;border-radius:8px;cursor:pointer;transition:background 0.25s,transform 0.2s;margin-top:0.5rem}
+.amg-btn-submit:hover{background:#3B82F6;transform:translateY(-1px)}
+.amg-btn-outline{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:600;color:#3B82F6;background:transparent;border:1px solid rgba(59,130,246,0.35);padding:0.6rem 1.3rem;border-radius:6px;transition:background 0.2s,border-color 0.2s}
+.amg-btn-outline:hover{background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6}
+.amg-notice{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-size:0.82rem;font-weight:600;color:#E5E7EB;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);padding:0.5rem 1.1rem;border-radius:6px}
+.amg-divider{width:100%;height:1px;background:#1F2937}
+.amg-bg-secondary{background:#07111F}
+.amg-text-center{text-align:center}
+
+/* FOOTER */
+#amg-footer{background:#07111F;border-top:1px solid #1F2937;padding:4rem 5vw 2.5rem}
+.amg-footer-inner{max-width:1100px;margin:0 auto}
+.amg-footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid #1F2937}
+.amg-footer-brand{font-size:1.1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;margin-bottom:0.8rem}
+.amg-footer-brand-sub{font-size:0.82rem;color:#9CA3AF;line-height:1.7;max-width:240px}
+.amg-footer-col-title{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin-bottom:1.2rem}
+#amg-footer a{display:block;font-size:0.88rem;color:#9CA3AF;margin-bottom:0.65rem}
+#amg-footer a:hover{color:#fff}
+.amg-footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;font-size:0.78rem;color:#9CA3AF}
+
+/* REVEAL */
+.amg-reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.amg-reveal.visible{opacity:1;transform:translateY(0)}
+.amg-reveal-d1{transition-delay:0.1s}
+.amg-reveal-d2{transition-delay:0.2s}
+.amg-reveal-d3{transition-delay:0.3s}
+.amg-reveal-d4{transition-delay:0.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .amg-nav-links{display:none}
+  .amg-hamburger{display:flex}
+  .amg-2col{grid-template-columns:1fr;gap:3rem}
+  .amg-footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .amg-contact-grid{grid-template-columns:1fr}
+  .amg-steps{grid-template-columns:1fr}
+  .amg-step:first-child{border-radius:12px 12px 0 0}
+  .amg-step:last-child{border-radius:0 0 12px 12px}
+  .amg-form-row,.amg-form-row-3{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .amg-value-grid{grid-template-columns:1fr}
+  .amg-footer-top{grid-template-columns:1fr}
+  .amg-footer-bottom{flex-direction:column;gap:0.5rem;text-align:center}
+  .amg-ctas{flex-direction:column;align-items:center}
+  .amg-btn-primary,.amg-btn-secondary{width:100%;max-width:280px;justify-content:center}
+  .amg-btn-submit{width:100%}
+  .amg-date-group{grid-template-columns:1fr}
+}
+</style>
+
+<div id="amg-site">
+
+<!-- NAV -->
+<nav id="amg-nav">
+  <a href="/" class="amg-logo" id="amg-nav-logo">AMG Aviation</a>
+  <ul class="amg-nav-links">
+    <li><a href="/" data-page="/">Home</a></li>
+    <li><a href="/about" data-page="/about">About</a></li>
+    <li><a href="/our-team" data-page="/our-team">Our Team</a></li>
+    <li><a href="/services" data-page="/services">Services</a></li>
+    <li><a href="/aircraft" data-page="/aircraft">Aircraft</a></li>
+    <li><a href="/pilot-network" data-page="/pilot-network">Pilot Network</a></li>
+    <li><a href="/contact" data-page="/contact">Contact</a></li>
+    <li><a href="/booking-request" class="amg-nav-cta" data-page="/booking-request">Book Now</a></li>
+  </ul>
+  <button class="amg-hamburger" id="amg-hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="amg-mobile-menu">
+  <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+  <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+  <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+  <a href="/booking-request">Booking Request</a>
+</div>
+
+<!-- PAGE CONTENT (injected by JS) -->
+<div id="amg-main"></div>
+
+<!-- FOOTER -->
+<footer id="amg-footer">
+  <div class="amg-footer-inner">
+    <div class="amg-footer-top">
+      <div>
+        <div class="amg-footer-brand">AMG Aviation Group</div>
+        <p class="amg-footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Navigation</div>
+        <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Services</div>
+        <a href="/services">Aircraft Ferry</a><a href="/services">Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Contact</div>
+        <a href="tel:+19544081730">(954) 408-1730</a>
+        <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+        <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+      </div>
+    </div>
+    <div class="amg-footer-bottom">
+      <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+      <span>South Florida · Nationwide Operations</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /amg-site -->
+
+<script>
+(function(){
+'use strict';
+
+/* ── PAGE CONTENT TEMPLATES ── */
+var pages = {};
+
+pages['/'] = pages['/home'] = `
+<section class="amg-hero">
+  <div>
+    <span class="amg-eyebrow">AMG Aviation Group LLC</span>
+    <h1>Ferry &amp; Flight<br>Operations Support</h1>
+    <p class="amg-hero-sub">Professional aircraft ferry, relocation, maintenance flight, and crew staffing support for owners, operators, aircraft managers, and service centers.</p>
+    <div class="amg-ctas">
+      <a href="/booking-request" class="amg-btn-primary">Request Booking</a>
+      <a href="/services" class="amg-btn-secondary">View Services</a>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-text-center amg-reveal" style="margin-bottom:3rem">
+      <span class="amg-label">Core Capabilities</span>
+      <h2 class="amg-title">Built for the demands<br>of professional aviation.</h2>
+    </div>
+    <div class="amg-cap-grid">
+      <div class="amg-cap-card amg-reveal amg-reveal-d1"><div class="amg-cap-icon">🕐</div><div class="amg-cap-title">24/7</div><div class="amg-cap-desc">Around-the-clock availability for time-critical operations.</div></div>
+      <div class="amg-cap-card amg-reveal amg-reveal-d2"><div class="amg-cap-icon">✈️</div><div class="amg-cap-title">CE-525</div><div class="amg-cap-desc">Type-rated Citation Jet operations with full IFR proficiency.</div></div>
+      <div class="amg-cap-card amg-reveal amg-reveal-d3"><div class="amg-cap-icon">🗺️</div><div class="amg-cap-title">Ferry Support</div><div class="amg-cap-desc">Domestic and international ferry with full regulatory compliance.</div></div>
+      <div class="amg-cap-card amg-reveal amg-reveal-d4"><div class="amg-cap-icon">🤝</div><div class="amg-cap-title">Owner Focused</div><div class="amg-cap-desc">Personalized coordination that prioritizes your aircraft and mission.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-2col">
+      <div class="amg-reveal">
+        <span class="amg-label">Operational Philosophy</span>
+        <h2 class="amg-title">Corporate aviation support built around real mission requirements.</h2>
+        <p>We understand that every flight has a purpose — and that the support structure behind it determines whether that purpose is met. AMG Aviation Group provides the experienced professionals and coordinated resources to make sure your aircraft is where it needs to be, flown safely, and returned in proper condition.</p>
+        <p>From single-leg ferry assignments to ongoing crew staffing arrangements, our team brings the technical qualifications and operational discipline required by today's demanding aviation environment.</p>
+      </div>
+      <div class="amg-value-grid">
+        <div class="amg-value-card amg-reveal amg-reveal-d1"><div class="amg-value-dot"></div><div class="amg-value-title">Safety First</div></div>
+        <div class="amg-value-card amg-reveal amg-reveal-d2"><div class="amg-value-dot"></div><div class="amg-value-title">Owner Support</div></div>
+        <div class="amg-value-card amg-reveal amg-reveal-d3"><div class="amg-value-dot"></div><div class="amg-value-title">Mission Based</div></div>
+        <div class="amg-value-card amg-reveal amg-reveal-d4"><div class="amg-value-dot"></div><div class="amg-value-title">Network Driven</div></div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+pages['/about'] = pages['/'];
+
+pages['/services'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">What We Do</span>
+  <h1>Operational Services</h1>
+  <p>Comprehensive aviation support from single-leg ferry operations to ongoing crew staffing.</p>
+</div>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2.5rem"><span class="amg-label">Flight Operations</span><h2 class="amg-title-sm">Aircraft Movement &amp; Delivery</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">🛫</div><span class="amg-card-tag">Ferry</span><div class="amg-card-title">Aircraft Ferry</div><div class="amg-card-desc">Professional ferry for piston, turboprop, and jet aircraft. Domestic and international routing with full compliance.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">🗺️</div><span class="amg-card-tag">Relocation</span><div class="amg-card-title">Aircraft Relocation</div><div class="amg-card-desc">Aircraft repositioning for maintenance, storage, owner preference, or base change.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d3"><div class="amg-card-icon">🔧</div><span class="amg-card-tag">Maintenance</span><div class="amg-card-title">Maintenance Flights</div><div class="amg-card-desc">Post-maintenance and return-to-service flight operations by type-familiar crew.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d4"><div class="amg-card-icon">📦</div><span class="amg-card-tag">Delivery</span><div class="amg-card-title">Delivery Flights</div><div class="amg-card-desc">New aircraft delivery and acquisition flight support. Pickup coordination and ferry to owner base.</div></div>
+    </div>
+  </div>
+</section>
+<div class="amg-divider"></div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2.5rem"><span class="amg-label">Crew Services</span><h2 class="amg-title-sm">Staffing &amp; Pilot Placement</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">👥</div><span class="amg-card-tag">Staffing</span><div class="amg-card-title">Crew Staffing</div><div class="amg-card-desc">Flight crew placement for owner-operators, flight departments, and management companies. Background and credential verified.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">🪪</div><span class="amg-card-tag">Contract</span><div class="amg-card-title">Contract Pilot Services</div><div class="amg-card-desc">1099 contract pilot placement for scheduled operations or crew shortfalls. ATP-qualified, type-rated pilots available.</div></div>
+    </div>
+  </div>
+</section>
+<div class="amg-divider"></div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal amg-text-center" style="margin-bottom:2.5rem"><span class="amg-label">Subscription Plans</span><h2 class="amg-title-sm">Ongoing Support Arrangements</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">🔩</div><div class="amg-card-title">Maintenance Subscription</div><div class="amg-card-desc">Recurring maintenance coordination. Priority scheduling and consistent crew oversight.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">🧑‍✈️</div><div class="amg-card-title">Contract Pilot Subscription</div><div class="amg-card-desc">Dedicated contract pilot availability on retainer. Reserved crew time with priority access.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-text-center">
+  <div class="amg-section-inner amg-reveal" style="max-width:640px">
+    <span class="amg-label">Dependability</span>
+    <h2 class="amg-title">Professional support you can count on.</h2>
+    <p style="color:#9CA3AF;margin:1rem 0 2rem;line-height:1.8">Every mission is handled with the same level of care — whether a single-leg ferry or a long-term staffing arrangement.</p>
+    <a href="/booking-request" class="amg-btn-primary">Request Support</a>
+  </div>
+</section>`;
+
+pages['/aircraft'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Fleet Coverage</span>
+  <h1>Aircraft Platforms</h1>
+  <p>Piston, jets, and rotorcraft — our network covers the platforms that matter.</p>
+</div>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Piston Aircraft</span><h2 class="amg-title-sm">Single &amp; Multi-Engine Piston</h2></div>
+    <div class="amg-aircraft-grid amg-reveal">
+      <div class="amg-ac-card"><div class="amg-ac-make">Cessna</div><div class="amg-ac-model">172 / 182 / 206</div><div class="amg-ac-desc">High-wing singles. IFR equipped.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Piper</div><div class="amg-ac-model">PA-28 / PA-32</div><div class="amg-ac-desc">Cherokee, Archer, Arrow, Lance.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Beechcraft</div><div class="amg-ac-model">Bonanza / Baron</div><div class="amg-ac-desc">V-tail, A36 singles, B55/B58 twins.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Piper</div><div class="amg-ac-model">PA-34 Seneca</div><div class="amg-ac-desc">Multi-engine IFR operations.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Cessna</div><div class="amg-ac-model">310 / 340 / 414</div><div class="amg-ac-desc">Pressurized and non-pressurized twins.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Cirrus</div><div class="amg-ac-model">SR20 / SR22</div><div class="amg-ac-desc">Glass cockpit singles with CAPS.</div></div>
+    </div>
+  </div>
+</section>
+<div class="amg-divider"></div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Turbine Jets</span><h2 class="amg-title-sm">Citation &amp; Light Jet Platforms</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-jet-card amg-reveal amg-reveal-d1">
+        <span class="amg-jet-badge">★ Primary Type</span>
+        <div class="amg-jet-model">Citation CJ Series</div><div class="amg-jet-variant">CE-525 / CJ1 / CJ2 / CJ3 / CJ4</div>
+        <div><div class="amg-spec"><span class="amg-spec-label">Rating</span><span class="amg-spec-value">CE-525(S) Type Rated</span></div><div class="amg-spec"><span class="amg-spec-label">Crew</span><span class="amg-spec-value">Single or Dual Pilot</span></div><div class="amg-spec"><span class="amg-spec-label">Range</span><span class="amg-spec-value">Domestic &amp; International</span></div></div>
+      </div>
+      <div class="amg-jet-card amg-reveal amg-reveal-d2">
+        <span class="amg-jet-badge">Supported</span>
+        <div class="amg-jet-model">Citation M2 / Encore</div><div class="amg-jet-variant">CE-525 Compatible Variants</div>
+        <div><div class="amg-spec"><span class="amg-spec-label">Rating</span><span class="amg-spec-value">CE-525 Type Covered</span></div><div class="amg-spec"><span class="amg-spec-label">Ops</span><span class="amg-spec-value">Ferry, Delivery, Maintenance</span></div><div class="amg-spec"><span class="amg-spec-label">Avionics</span><span class="amg-spec-value">Garmin G3000 / ProLine</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="amg-divider"></div>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Rotorcraft</span><h2 class="amg-title-sm">Helicopter Platforms</h2></div>
+    <div class="amg-aircraft-grid amg-reveal">
+      <div class="amg-ac-card"><div class="amg-ac-make">Robinson</div><div class="amg-ac-model">R22 / R44 / R66</div><div class="amg-ac-desc">Piston and turbine Robinson fleet.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Bell</div><div class="amg-ac-model">206 JetRanger</div><div class="amg-ac-desc">Light turbine single.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Bell</div><div class="amg-ac-model">407</div><div class="amg-ac-desc">Single turbine, glass cockpit variants.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Airbus</div><div class="amg-ac-model">AS350 / H125</div><div class="amg-ac-desc">B2/B3 high-performance turbine single.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Sikorsky</div><div class="amg-ac-model">S-76</div><div class="amg-ac-desc">Corporate twin turbine transport.</div></div>
+      <div class="amg-ac-card"><div class="amg-ac-make">Airbus</div><div class="amg-ac-model">EC135 / EC145</div><div class="amg-ac-desc">Twin turbine, IFR capable.</div></div>
+    </div>
+  </div>
+</section>`;
+
+pages['/our-team'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">The People</span>
+  <h1>Our Team</h1>
+  <p>Qualified professionals who bring the experience and discipline your operation demands.</p>
+</div>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2.5rem"><span class="amg-label">Leadership</span><h2 class="amg-title-sm">Pilots &amp; Operational Partners</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-team-card amg-reveal amg-reveal-d1">
+        <img src="https://static.wixstatic.com/media/b5b263_846cdc923cc84e02bb3140e63bad9e0a~mv2.jpg" alt="Tony — Owner and Pilot" class="amg-team-photo" loading="lazy"/>
+        <div class="amg-team-body">
+          <div class="amg-team-role">Owner / Pilot</div>
+          <div class="amg-team-name">Tony</div>
+          <div class="amg-quals">
+            <span class="amg-qual">CE-525(S)</span><span class="amg-qual">Commercial Pilot</span><span class="amg-qual">IRA</span><span class="amg-qual">CMEL</span><span class="amg-qual">KFXE</span>
+          </div>
+        </div>
+      </div>
+      <div class="amg-team-card amg-reveal amg-reveal-d2">
+        <div class="amg-team-photo-ph">✈</div>
+        <div class="amg-team-body">
+          <div class="amg-team-role">Operational Partner / Pilot</div>
+          <div class="amg-team-name">Francisco</div>
+          <div class="amg-quals">
+            <span class="amg-qual">ATP</span><span class="amg-qual">CFII</span><span class="amg-qual">MEI</span><span class="amg-qual">CE-525(S)</span><span class="amg-qual">SF-50 SIC</span>
+          </div>
+          <div class="amg-team-hours">4,000+ Total Hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2.5rem"><span class="amg-label">Expand the Network</span><h2 class="amg-title-sm">Work With Us</h2></div>
+    <div class="amg-grid-2">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">🌐</div><div class="amg-card-title">Join Our Network</div><div class="amg-card-desc" style="margin-bottom:1.2rem">Qualified pilots looking for 1099 contract ferry and flight support opportunities nationwide.</div><a href="mailto:information@amgaviationgroup.com" class="amg-btn-outline">Contact Us</a></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">🤝</div><div class="amg-card-title">Operational Partnerships</div><div class="amg-card-desc" style="margin-bottom:1.2rem">Flight schools, management companies, FBOs, and service centers looking for a reliable referral relationship.</div><a href="mailto:information@amgaviationgroup.com" class="amg-btn-outline">Get in Touch</a></div>
+    </div>
+  </div>
+</section>`;
+
+pages['/contact'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Get In Touch</span>
+  <h1>Contact</h1>
+  <p>Reach the AMG Aviation Group team for bookings, inquiries, or partnership discussions.</p>
+</div>
+<section class="amg-section">
+  <div class="amg-section-inner" style="max-width:900px">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Direct Contact</span><h2 class="amg-title-sm">How to Reach Us</h2></div>
+    <div class="amg-contact-grid">
+      <div class="amg-contact-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">📞</div><div class="amg-contact-lbl">Phone</div><div class="amg-contact-val"><a href="tel:+19544081730">(954) 408-1730</a></div><div class="amg-contact-sub">Call or text for fastest response</div></div>
+      <div class="amg-contact-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">✉️</div><div class="amg-contact-lbl">Email</div><div class="amg-contact-val"><a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a></div><div class="amg-contact-sub">General inquiries and bookings</div></div>
+      <div class="amg-contact-card amg-reveal amg-reveal-d3"><div class="amg-card-icon">🌐</div><div class="amg-contact-lbl">Website</div><div class="amg-contact-val">amgaviation.net</div><div class="amg-contact-sub">Full service info and booking portal</div></div>
+      <div class="amg-contact-card amg-reveal amg-reveal-d4"><div class="amg-card-icon">📍</div><div class="amg-contact-lbl">Service Area</div><div class="amg-contact-val">South Florida</div><div class="amg-contact-sub">Base of operations — nationwide coverage</div></div>
+    </div>
+    <div class="amg-grid" style="margin-top:1.5rem">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div style="font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:0.4rem">General Inquiries</div><div class="amg-card-desc">Email inquiries typically responded to within one business day. For urgent matters, call or text directly.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div style="font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:0.4rem">Booking Requests</div><div class="amg-card-desc">Booking requests reviewed and responded to within 24 hours.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d3"><div style="font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:0.4rem">Time-Sensitive Ops</div><div class="amg-card-desc">For urgent same-day requests, call (954) 408-1730. We maintain 24/7 availability.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d4"><div style="font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:0.4rem">Pilot Applications</div><div class="amg-card-desc">Applications reviewed on a rolling basis with follow-up if qualifications match.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-text-center">
+  <div class="amg-reveal" style="max-width:600px;margin:0 auto">
+    <span class="amg-label">Ready?</span>
+    <h2 class="amg-title">Submit a booking request.</h2>
+    <p style="color:#9CA3AF;margin:1rem 0 2rem;line-height:1.8">Use our form to provide mission details and we'll confirm crew availability within 24 hours.</p>
+    <a href="/booking-request" class="amg-btn-primary">Request Booking</a>
+  </div>
+</section>`;
+
+pages['/booking-request'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Get Started</span>
+  <h1>Booking Request</h1>
+  <p>Submit your mission details and our team will respond with crew availability within 24 hours.</p>
+</div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Process</span><h2 class="amg-title-sm">What Happens After You Submit</h2></div>
+    <div class="amg-grid">
+      <div class="amg-card amg-reveal amg-reveal-d1"><div class="amg-card-icon">📋</div><div class="amg-card-title">Mission-Based Review</div><div class="amg-card-desc">Every request reviewed against aircraft type, routing, timing, and crew needs.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d2"><div class="amg-card-icon">📡</div><div class="amg-card-title">Professional Coordination</div><div class="amg-card-desc">Crew assignment and availability confirmed before formal response.</div></div>
+      <div class="amg-card amg-reveal amg-reveal-d3"><div class="amg-card-icon">✅</div><div class="amg-card-title">Safety-First Execution</div><div class="amg-card-desc">All operations executed with qualified crew and full regulatory compliance.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section">
+  <div class="amg-section-inner">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Steps</span><h2 class="amg-title-sm">Four Steps to a Confirmed Mission</h2></div>
+    <div class="amg-steps amg-reveal">
+      <div class="amg-step"><div class="amg-step-num">Step 01</div><div class="amg-step-title">Submit Details</div><div class="amg-step-desc">Fill out the form with aircraft, date, service type, and mission description.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 02</div><div class="amg-step-title">Review Requirements</div><div class="amg-step-desc">Our team matches qualified crew to your aircraft type and routing.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 03</div><div class="amg-step-title">Confirm Availability</div><div class="amg-step-desc">We confirm crew and contact you to finalize scheduling.</div></div>
+      <div class="amg-step"><div class="amg-step-num">Step 04</div><div class="amg-step-title">Coordinate Mission</div><div class="amg-step-desc">Full operational coordination handled by AMG Aviation Group.</div></div>
+    </div>
+  </div>
+</section>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner">
+    <div class="amg-form-wrap">
+      <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Booking Form</span><h2 class="amg-title-sm">Submit Your Request</h2></div>
+      <form class="amg-form amg-reveal" id="amg-booking-form" novalidate>
+        <div class="amg-form-row">
+          <div class="amg-form-group"><label>First Name</label><input type="text" name="firstName" autocomplete="given-name" required /></div>
+          <div class="amg-form-group"><label>Last Name</label><input type="text" name="lastName" autocomplete="family-name" required /></div>
+        </div>
+        <div class="amg-form-group"><label>Company Name</label><input type="text" name="company" autocomplete="organization" /></div>
+        <div class="amg-form-row">
+          <div class="amg-form-group"><label>Email</label><input type="email" name="email" required /></div>
+          <div class="amg-form-group"><label>Phone</label><input type="tel" name="phone" /></div>
+        </div>
+        <div class="amg-form-group">
+          <label>Requested Service Date</label>
+          <div class="amg-date-group">
+            <select name="month" aria-label="Month"><option value="">Month</option><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select>
+            <select name="day" aria-label="Day"><option value="">Day</option></select>
+            <select name="year" aria-label="Year"><option value="">Year</option></select>
+          </div>
+          <span style="font-size:0.75rem;color:#9CA3AF;margin-top:0.2rem;display:block">If unsure, please choose any date.</span>
+        </div>
+        <div class="amg-form-group">
+          <label>Services Desired</label>
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option>Aircraft Ferry</option><option>Aircraft Relocation</option><option>Maintenance Flights</option><option>Delivery Flights</option><option>Crew Staffing</option><option>Contract Pilot Services</option><option>Maintenance Subscription</option><option>Contract Pilot Subscription</option>
+          </select>
+        </div>
+        <div class="amg-form-group"><label>Mission Details</label><textarea name="mission" rows="4" placeholder="Please describe in a few words how we can meet your needs"></textarea></div>
+        <div class="amg-form-group"><label>Additional Details / Questions</label><textarea name="additional" rows="3" placeholder="Any additional information or questions"></textarea></div>
+        <button type="submit" class="amg-btn-submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+</section>`;
+
+pages['/pilot-network'] = `
+<div class="amg-page-hero">
+  <span class="amg-label">Join Our Nationwide Pilot Network</span>
+  <h1>Pilot Network<br>Application</h1>
+  <p>1099 contract ferry pilots and flight support professionals. Submit your qualifications to join the AMG Aviation Group network.</p>
+  <span class="amg-notice">⚠ 1099 Contract Work ONLY</span>
+</div>
+<section class="amg-section amg-bg-secondary">
+  <div class="amg-section-inner-sm">
+    <div class="amg-reveal" style="margin-bottom:2rem"><span class="amg-label">Network Application</span><h2 class="amg-title-sm">Submit Your Qualifications</h2></div>
+    <form class="amg-reveal" id="amg-pilot-form" novalidate>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">👤</span><span class="amg-form-block-title">General Information</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Legal Name</label><input type="text" class="amg-form" name="legalName" required autocomplete="name" /></div><div class="amg-form-group"><label class="amg-form">Business Name</label><input type="text" class="amg-form" name="businessName" /></div></div>
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Email</label><input type="email" class="amg-form" name="email" required /></div><div class="amg-form-group"><label class="amg-form">Phone</label><input type="tel" class="amg-form" name="phone" /></div></div>
+          <div class="amg-form-group"><label class="amg-form">Address</label><input type="text" class="amg-form" name="address" /></div>
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Languages</label><input type="text" class="amg-form" name="languages" placeholder="e.g. English, Spanish" /></div><div class="amg-form-group"><label class="amg-form">Nearest Airport (ICAO)</label><input type="text" class="amg-form" name="airport" placeholder="e.g. KFLL" /></div></div>
+          <div class="amg-form-row">
+            <div class="amg-form-group"><label class="amg-form">Valid Passport?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="passport" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="passport" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+            <div class="amg-form-group"><label class="amg-form">Minimum Notice Required</label><select class="amg-form" name="notice"><option value="">Select</option><option>Same day</option><option>24 hours</option><option>48 hours</option><option>72 hours</option><option>1 week</option></select></div>
+          </div>
+          <div class="amg-form-row-3">
+            <div class="amg-form-group"><label class="amg-form">Rate — Single Engine</label><input type="text" class="amg-form" name="rateSE" placeholder="e.g. $400/day" /></div>
+            <div class="amg-form-group"><label class="amg-form">Rate — Multi-Engine</label><input type="text" class="amg-form" name="rateMEL" placeholder="e.g. $600/day" /></div>
+            <div class="amg-form-group"><label class="amg-form">Rate — Turbine</label><input type="text" class="amg-form" name="rateTurbine" placeholder="e.g. $900/day" /></div>
+          </div>
+          <div class="amg-form-group"><label class="amg-form">Availability Start Date</label><input type="date" class="amg-form" name="availStart" /></div>
+        </div>
+      </div>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">📋</span><span class="amg-form-block-title">Certificates &amp; Ratings</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-group"><label class="amg-form">FAA Medical Class</label><select class="amg-form" name="medical"><option value="">Select</option><option>First Class</option><option>Second Class</option><option>Third Class</option><option>BasicMed</option></select></div>
+          <div class="amg-form-group"><label class="amg-form">Certificate Type (select all)</label><div class="amg-cb-group"><label class="amg-cb-item"><input type="checkbox" name="cert" value="ATP" /><span class="amg-cb-label">ATP</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="Commercial" /><span class="amg-cb-label">Commercial</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="ATP-H" /><span class="amg-cb-label">ATP-H</span></label><label class="amg-cb-item"><input type="checkbox" name="cert" value="CPL-H" /><span class="amg-cb-label">CPL-H</span></label></div></div>
+          <div class="amg-form-group"><label class="amg-form">Ratings (select all)</label><div class="amg-cb-group"><label class="amg-cb-item"><input type="checkbox" name="rating" value="ASEL" /><span class="amg-cb-label">ASEL</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="AMEL" /><span class="amg-cb-label">AMEL</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="IFR" /><span class="amg-cb-label">IFR</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFI" /><span class="amg-cb-label">CFI</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFII" /><span class="amg-cb-label">CFII</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="MEI" /><span class="amg-cb-label">MEI</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="Tailwheel" /><span class="amg-cb-label">Tailwheel</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="High Performance" /><span class="amg-cb-label">High Perf</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="IFR-H" /><span class="amg-cb-label">IFR-H</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="CFI-H" /><span class="amg-cb-label">CFI-H</span></label><label class="amg-cb-item"><input type="checkbox" name="rating" value="NVG-H" /><span class="amg-cb-label">NVG-H</span></label></div></div>
+          <div class="amg-form-group"><label class="amg-form">Type Ratings</label><input type="text" class="amg-form" name="typeRatings" placeholder="e.g. CE-525, BE-400, B737" /></div>
+        </div>
+      </div>
+      <div class="amg-form-block">
+        <div class="amg-form-block-hdr"><span class="amg-form-block-icon">✈️</span><span class="amg-form-block-title">Flight Time</span></div>
+        <div class="amg-form-block-body">
+          <div class="amg-form-row"><div class="amg-form-group"><label class="amg-form">Total Time (hours)</label><input type="number" class="amg-form" name="totalTime" min="0" placeholder="e.g. 2500" /></div><div class="amg-form-group"><label class="amg-form">PIC Time (hours)</label><input type="number" class="amg-form" name="picTime" min="0" placeholder="e.g. 1800" /></div></div>
+          <div class="amg-form-group"><label class="amg-form">Multi-Engine Time (hours)</label><input type="number" class="amg-form" name="multiTime" min="0" placeholder="e.g. 800" /></div>
+          <div class="amg-form-row">
+            <div class="amg-form-group"><label class="amg-form">International Experience?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="intl" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="intl" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+            <div class="amg-form-group"><label class="amg-form">Oceanic Experience?</label><div class="amg-radio-group"><label class="amg-radio-item"><input type="radio" name="oceanic" value="yes" /><span class="amg-radio-label">Yes</span></label><label class="amg-radio-item"><input type="radio" name="oceanic" value="no" /><span class="amg-radio-label">No</span></label></div></div>
+          </div>
+          <div class="amg-form-group"><label class="amg-form">Additional Comments</label><textarea class="amg-form" name="comments" rows="4" placeholder="Experience, availability, aircraft preferences"></textarea></div>
+        </div>
+      </div>
+      <button type="submit" class="amg-btn-submit">Submit Application</button>
+    </form>
+  </div>
+</section>`;
+
+/* ── ROUTING ── */
+var path = window.location.pathname.replace(/\/$/, '') || '/';
+var content = pages[path] || pages['/'];
+document.getElementById('amg-main').innerHTML = content;
+
+/* Mark active nav link */
+document.querySelectorAll('#amg-nav a[data-page]').forEach(function(a) {
+  if (a.getAttribute('data-page') === path) a.classList.add('active');
+});
+
+/* ── POPULATE DATE SELECTS ── */
+var daySelect = document.querySelector('[name="day"]');
+var yearSelect = document.querySelector('[name="year"]');
+if (daySelect) { for (var d=1;d<=31;d++) { var o=document.createElement('option'); o.value=d; o.textContent=d; daySelect.appendChild(o); } }
+if (yearSelect) { var y=new Date().getFullYear(); for (var i=y;i<=y+3;i++) { var oy=document.createElement('option'); oy.value=i; oy.textContent=i; yearSelect.appendChild(oy); } }
+
+/* ── FORM SUBMIT HANDLERS ── */
+['amg-booking-form','amg-pilot-form'].forEach(function(id) {
+  var form = document.getElementById(id);
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = this.querySelector('.amg-btn-submit');
+    btn.textContent = 'Submitted ✓';
+    btn.style.background = '#166534';
+    btn.disabled = true;
+  });
+});
+
+/* ── NAV SCROLL ── */
+var nav = document.getElementById('amg-nav');
+var container = document.getElementById('amg-site');
+container.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', container.scrollTop > 40);
+}, { passive: true });
+
+/* ── HAMBURGER ── */
+var hamburger = document.getElementById('amg-hamburger');
+var mobileMenu = document.getElementById('amg-mobile-menu');
+hamburger.addEventListener('click', function() {
+  var open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+});
+mobileMenu.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px', root: container });
+document.querySelectorAll('.amg-reveal').forEach(function(el) { observer.observe(el); });
+
+/* ── NAV LINK INTERCEPT ── */
+document.querySelectorAll('#amg-site a[href^="/"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    try { window.parent.location.href = this.getAttribute('href'); }
+    catch(err) { window.location.href = this.getAttribute('href'); }
+  });
+});
+
+})();
+</script>

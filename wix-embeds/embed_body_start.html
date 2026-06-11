@@ -1,0 +1,138 @@
+<style>
+.amg-form input::placeholder,.amg-form textarea::placeholder{color:#9CA3AF;opacity:0.6}
+.amg-form input:focus,.amg-form select:focus,.amg-form textarea:focus{border-color:#3B82F6}
+.amg-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239CA3AF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.9rem center;padding-right:2.4rem;cursor:pointer}
+.amg-form select option{background:#0E223D}
+.amg-form textarea{resize:vertical;min-height:90px;line-height:1.6}
+.amg-form-block{border:1px solid #1F2937;border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.amg-form-block-hdr{background:#0E223D;padding:1.2rem 1.8rem;display:flex;align-items:center;gap:0.7rem;border-bottom:1px solid #1F2937}
+.amg-form-block-icon{font-size:1.1rem}
+.amg-form-block-title{font-size:0.88rem;font-weight:700;color:#fff}
+.amg-form-block-body{background:#050B14;padding:1.8rem;display:flex;flex-direction:column;gap:1.2rem}
+.amg-cb-group{display:flex;flex-wrap:wrap;gap:0.6rem}
+.amg-cb-item{display:flex;align-items:center;gap:0.4rem;cursor:pointer}
+.amg-cb-item input[type=checkbox]{width:16px;height:16px;-webkit-appearance:none;appearance:none;border:1px solid #1F2937;border-radius:3px;background:#0E223D;cursor:pointer;transition:background 0.15s;flex-shrink:0;padding:0}
+.amg-cb-item input[type=checkbox]:checked{background:#1D4E89;border-color:#1D4E89}
+.amg-cb-label{font-size:0.83rem;color:#E5E7EB;text-transform:none;letter-spacing:0;font-weight:400}
+.amg-radio-group{display:flex;gap:1.2rem;flex-wrap:wrap}
+.amg-radio-item{display:flex;align-items:center;gap:0.4rem;cursor:pointer}
+.amg-radio-item input[type=radio]{width:16px;height:16px;-webkit-appearance:none;appearance:none;border:1px solid #1F2937;border-radius:50%;background:#0E223D;cursor:pointer;flex-shrink:0;padding:0;transition:all 0.15s}
+.amg-radio-item input[type=radio]:checked{background:#1D4E89;border-color:#1D4E89;box-shadow:inset 0 0 0 3px #0E223D}
+.amg-radio-label{font-size:0.88rem;color:#E5E7EB;text-transform:none;letter-spacing:0;font-weight:400}
+.amg-date-group{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem}
+input[type=file].amg-file{font-size:0.85rem;color:#9CA3AF;cursor:pointer;padding:0.6rem 0.9rem}
+input[type=file].amg-file::file-selector-button{font-family:inherit;font-size:0.78rem;font-weight:600;color:#fff;background:#1D4E89;border:none;padding:0.4rem 0.9rem;border-radius:5px;cursor:pointer;margin-right:0.8rem}
+.amg-btn-submit{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;font-family:inherit;font-size:0.95rem;font-weight:600;color:#fff;background:#1D4E89;border:none;padding:1rem 2.5rem;border-radius:8px;cursor:pointer;transition:background 0.25s,transform 0.2s;margin-top:0.5rem}
+.amg-btn-submit:hover{background:#3B82F6;transform:translateY(-1px)}
+.amg-btn-outline{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:600;color:#3B82F6;background:transparent;border:1px solid rgba(59,130,246,0.35);padding:0.6rem 1.3rem;border-radius:6px;transition:background 0.2s,border-color 0.2s}
+.amg-btn-outline:hover{background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6}
+.amg-notice{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-size:0.82rem;font-weight:600;color:#E5E7EB;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);padding:0.5rem 1.1rem;border-radius:6px}
+.amg-divider{width:100%;height:1px;background:#1F2937}
+.amg-bg-secondary{background:#07111F}
+.amg-text-center{text-align:center}
+
+/* FOOTER */
+#amg-footer{background:#07111F;border-top:1px solid #1F2937;padding:4rem 5vw 2.5rem}
+.amg-footer-inner{max-width:1100px;margin:0 auto}
+.amg-footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid #1F2937}
+.amg-footer-brand{font-size:1.1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;margin-bottom:0.8rem}
+.amg-footer-brand-sub{font-size:0.82rem;color:#9CA3AF;line-height:1.7;max-width:240px}
+.amg-footer-col-title{font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9CA3AF;margin-bottom:1.2rem}
+#amg-footer a{display:block;font-size:0.88rem;color:#9CA3AF;margin-bottom:0.65rem}
+#amg-footer a:hover{color:#fff}
+.amg-footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;font-size:0.78rem;color:#9CA3AF}
+
+/* REVEAL */
+.amg-reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.amg-reveal.visible{opacity:1;transform:translateY(0)}
+.amg-reveal-d1{transition-delay:0.1s}
+.amg-reveal-d2{transition-delay:0.2s}
+.amg-reveal-d3{transition-delay:0.3s}
+.amg-reveal-d4{transition-delay:0.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .amg-nav-links{display:none}
+  .amg-hamburger{display:flex}
+  .amg-2col{grid-template-columns:1fr;gap:3rem}
+  .amg-footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .amg-contact-grid{grid-template-columns:1fr}
+  .amg-steps{grid-template-columns:1fr}
+  .amg-step:first-child{border-radius:12px 12px 0 0}
+  .amg-step:last-child{border-radius:0 0 12px 12px}
+  .amg-form-row,.amg-form-row-3{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .amg-value-grid{grid-template-columns:1fr}
+  .amg-footer-top{grid-template-columns:1fr}
+  .amg-footer-bottom{flex-direction:column;gap:0.5rem;text-align:center}
+  .amg-ctas{flex-direction:column;align-items:center}
+  .amg-btn-primary,.amg-btn-secondary{width:100%;max-width:280px;justify-content:center}
+  .amg-btn-submit{width:100%}
+  .amg-date-group{grid-template-columns:1fr}
+}
+</style>
+
+
+<div id="amg-site">
+
+<!-- NAV -->
+<nav id="amg-nav">
+  <a href="/" class="amg-logo" id="amg-nav-logo">AMG Aviation</a>
+  <ul class="amg-nav-links">
+    <li><a href="/" data-page="/">Home</a></li>
+    <li><a href="/about" data-page="/about">About</a></li>
+    <li><a href="/our-team" data-page="/our-team">Our Team</a></li>
+    <li><a href="/services" data-page="/services">Services</a></li>
+    <li><a href="/aircraft" data-page="/aircraft">Aircraft</a></li>
+    <li><a href="/pilot-network" data-page="/pilot-network">Pilot Network</a></li>
+    <li><a href="/contact" data-page="/contact">Contact</a></li>
+    <li><a href="/booking-request" class="amg-nav-cta" data-page="/booking-request">Book Now</a></li>
+  </ul>
+  <button class="amg-hamburger" id="amg-hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="amg-mobile-menu">
+  <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a>
+  <a href="/services">Services</a><a href="/aircraft">Aircraft</a>
+  <a href="/pilot-network">Pilot Network</a><a href="/contact">Contact</a>
+  <a href="/booking-request">Booking Request</a>
+</div>
+
+<!-- PAGE CONTENT (injected by JS) -->
+<div id="amg-main"></div>
+
+<!-- FOOTER -->
+<footer id="amg-footer">
+  <div class="amg-footer-inner">
+    <div class="amg-footer-top">
+      <div>
+        <div class="amg-footer-brand">AMG Aviation Group</div>
+        <p class="amg-footer-brand-sub">Professional aircraft ferry, relocation, and crew staffing support. South Florida based, nationwide reach.</p>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Navigation</div>
+        <a href="/">Home</a><a href="/about">About</a><a href="/our-team">Our Team</a><a href="/aircraft">Aircraft</a><a href="/contact">Contact</a>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Services</div>
+        <a href="/services">Aircraft Ferry</a><a href="/services">Relocation</a><a href="/services">Crew Staffing</a><a href="/services">Contract Pilots</a><a href="/services">Maintenance Flights</a>
+      </div>
+      <div>
+        <div class="amg-footer-col-title">Contact</div>
+        <a href="tel:+19544081730">(954) 408-1730</a>
+        <a href="mailto:information@amgaviationgroup.com">information@amgaviationgroup.com</a>
+        <a href="/booking-request">Request Booking</a><a href="/pilot-network">Join Pilot Network</a>
+      </div>
+    </div>
+    <div class="amg-footer-bottom">
+      <span>© 2024 AMG Aviation Group LLC. All rights reserved.</span>
+      <span>South Florida · Nationwide Operations</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /amg-site -->
+
